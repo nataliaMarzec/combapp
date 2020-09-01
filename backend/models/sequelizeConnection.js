@@ -1,6 +1,7 @@
 'use strict'
 
 const Sequelize = require('sequelize');
+const ClienteModel=require('./cliente');
 
 
 
@@ -27,6 +28,7 @@ var models={}
 models=sequelize
 models=Sequelize
 
+const Cliente= ClienteModel(sequelize,Sequelize);
 
 
 
@@ -50,14 +52,14 @@ sequelize.authenticate()
 
 
 
-
+// sequelize.sync({force:true})
 sequelize.sync()
   .then(() => {
     console.log(`Base de datos y tablas creadas, modelos sincronizados!`)
+    console.log("SOY CLIENTE SYNC:",Cliente=== sequelize.models.Cliente); 
 
 
-
-    
+  
   })
 
 
@@ -65,8 +67,8 @@ sequelize.sync()
 
 
 module.exports = {
-  sequelize
-
+  sequelize,
+  Cliente
 
   
  
