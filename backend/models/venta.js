@@ -11,10 +11,10 @@ module.exports = function (sequelize, DataTypes) {
       facturado: DataTypes.BOOLEAN,
 
 
-      saldoCobrado: DataTypes.INTEGER,
+      saldoCobrado: DataTypes.BIGINT.UNSIGNED,
 
 
-      montoSinCobrar: DataTypes.INTEGER,
+      montoSinCobrar: DataTypes.BIGINT.UNSIGNED,
 
 
       tipoDePago: DataTypes.STRING,
