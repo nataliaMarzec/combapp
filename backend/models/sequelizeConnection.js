@@ -2,7 +2,8 @@
 
 const Sequelize = require('sequelize');
 const ClienteModel=require('./cliente');
-
+const VentaModel=require('./venta');
+const FacturaModel = require('./factura');
 
 
 
@@ -29,8 +30,8 @@ models=sequelize
 models=Sequelize
 
 const Cliente= ClienteModel(sequelize,Sequelize);
-
-
+const Venta= VentaModel(sequelize,Sequelize);
+const Factura= FacturaModel(sequelize,Sequelize);
 
 
 
@@ -52,8 +53,8 @@ sequelize.authenticate()
 
 
 
-// sequelize.sync({force:true})
-sequelize.sync()
+sequelize.sync({force:true})
+// sequelize.sync()
   .then(() => {
     console.log(`Base de datos y tablas creadas, modelos sincronizados!`)
     console.log("SOY CLIENTE SYNC:",Cliente=== sequelize.models.Cliente); 
@@ -68,9 +69,9 @@ sequelize.sync()
 
 module.exports = {
   sequelize,
-  Cliente
-
-  
+  Cliente,
+  Venta,
+  Factura
  
 };
 

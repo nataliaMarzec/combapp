@@ -1,59 +1,43 @@
-'use strict'
-const { Sequelize ,Op,Model} = require('sequelize');
+"use strict";
+const { Sequelize, Op, Model } = require("sequelize");
+const {Venta}   = require("./sequelizeConnection")
+module.exports = function (sequelize, DataTypes) {
+  const Cliente = sequelize.define(
+    "Cliente",
+    {
+      nombre: DataTypes.STRING,
 
 
+      apellido: DataTypes.STRING,
 
-module.exports = function(sequelize,DataTypes) {
-	const Cliente = sequelize.define('Cliente',{
+
+      cuit: DataTypes.INTEGER,
+
+
+      razonSocial: DataTypes.STRING,
+
+
+      telefono: DataTypes.INTEGER,
+
+
+      email: DataTypes.STRING,
+    },
+
+    {
+      tableName: "Clientes",
+      modelName: "Cliente",
+    }
+  );
+
+  Cliente.associate = (models) => {
    
-    nombre: DataTypes.STRING,
 
 
-    apellido: DataTypes.STRING,
+    //Asociaciones
+  
 
+  },
+    console.log("SOY CLIENTE:", Cliente === sequelize.models.Cliente);
 
-    cuit: DataTypes.INTEGER,
-
-
-    razonSocial: DataTypes.STRING,
-
-
-    telefono: DataTypes.INTEGER,
-
-
-    email: DataTypes.STRING,
-		
-     
-		
-		
-		},
-	    
-	{
-	
-		tableName: 'Clientes',
-		modelName: 'Cliente'
-		},
-      
-    );
-      
-        Cliente.associate = models => {
-    
-          
-
-
-          
-		},
-     
-       console.log("SOY CLIENTE:",Cliente === sequelize.models.Cliente);   
-
-	    return Cliente;
-    };
-
-	
-	
-
-
-
-
-
-
+  return Cliente;
+};
