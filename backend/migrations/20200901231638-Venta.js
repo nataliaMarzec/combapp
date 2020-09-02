@@ -15,10 +15,10 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       saldoCobrado: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT.UNSIGNED
       },
       montoSinCobrar: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT.UNSIGNED
       },
       tipoDePago: {
         type: Sequelize.STRING

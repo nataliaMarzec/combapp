@@ -11,13 +11,13 @@ module.exports = function (sequelize, DataTypes) {
       apellido: DataTypes.STRING,
 
 
-      cuit: DataTypes.INTEGER,
+      cuit: DataTypes.BIGINT.UNSIGNED,
 
 
       razonSocial: DataTypes.STRING,
 
 
-      telefono: DataTypes.INTEGER,
+      telefono: DataTypes.STRING,
 
 
       email: DataTypes.STRING,

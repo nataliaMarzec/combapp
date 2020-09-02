@@ -15,13 +15,13 @@ module.exports = {
         type: Sequelize.STRING
       },
       cuit: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT.UNSIGNED
       },
       razonSocial: {
         type: Sequelize.STRING
       },
       telefono: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       email: {
         type: Sequelize.STRING
