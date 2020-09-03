@@ -57,7 +57,7 @@ sequelize.sync({force:true})
 // sequelize.sync()
   .then(() => {
     console.log(`Base de datos y tablas creadas, modelos sincronizados!`)
-    console.log("SOY CLIENTE SYNC:",Cliente=== sequelize.models.Cliente); 
+    
 
 
   
