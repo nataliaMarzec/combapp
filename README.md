@@ -1,9 +1,10 @@
-...EN PROCESO DE DESARROLLO...
-***
 
 ![combapp1](https://user-images.githubusercontent.com/43456410/92179473-19a51b80-ee1b-11ea-9b30-9743494c3c89.jpeg)
       
 ***
+...EN PROCESO DE DESARROLLO...
+***
+
 
 [trello](https://trello.com/b/2aVsCRXP/combapp)
 
