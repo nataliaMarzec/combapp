@@ -11,7 +11,7 @@ const server= express();
 
 
 server.use(bodyParser.json());
-
+server.use(require ('./routes/routes.js'));
 server.set('port',process.env.PORT ||8888);
 server.get("/", (req, res) => res.send('APP UP'));
 
