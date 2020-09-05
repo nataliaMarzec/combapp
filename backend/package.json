@@ -4,8 +4,11 @@
   "description": "Combapp TTIP UNQ",
   "main": "server.js",
   "scripts": {
-    "start":"node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "local:migrate": "node_modules/.bin/sequelize db:migrate",
+    "local:migrate:undo": "node_modules/sequelize-cli/lib/sequelize db:migrate:undo",
+    "local:seeds": "ALGOLIA_API_KEY=04d54a2286b1a40cd25cdb27462d5f8f ALGOLIA_APP_ID=O29Y5277YT node_modules/.bin/sequelize db:seed:all"
   },
   "repository": {
     "type": "git",
