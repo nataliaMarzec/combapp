@@ -5,9 +5,10 @@ import {
   Switch
 } from 'react-router-dom'
 import { CContainer, CFade } from '@coreui/react'
-
-// routes config
 import routes from '../routes'
+
+
+
   
 const loading = (
   <div className="pt-3 text-center">
