@@ -53,8 +53,8 @@ sequelize.authenticate()
 
 
 
-sequelize.sync({force:true})
-// sequelize.sync()
+// sequelize.sync({force:true})
+sequelize.sync()
   .then(() => {
     console.log(`Base de datos y tablas creadas, modelos sincronizados!`)
     
