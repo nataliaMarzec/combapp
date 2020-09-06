@@ -18,8 +18,8 @@ server.get("/", (req, res) => res.send('APP UP'));
 
 console.log("AQUI SERVER:",path.join(__dirname,`server`));
 
-
-sequelize.sync({force:true})
+sequelize.sync()
+// sequelize.sync({force:true})
 .then(() => {
   server.listen(server.get('port'),()=> {
   debug(`Express listening on port ${server.get('port')}`);
