@@ -5,21 +5,25 @@ module.exports = function (sequelize, DataTypes) {
   const Cliente = sequelize.define(
     "Cliente",
     {
-      nombre: DataTypes.STRING,
-
-
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
+      nombre: {
+		    type:DataTypes.STRING,
+		    allowNull:false,
+	    //  validate: {
+		  //    notNull: {
+	    //  		msg: 'Por favor completa tu nombre'
+      //  }
+      // }
+		},
       apellido: DataTypes.STRING,
-
-
       cuit: DataTypes.BIGINT.UNSIGNED,
-
-
       razonSocial: DataTypes.STRING,
-
-
       telefono: DataTypes.STRING,
-
-
       email: DataTypes.STRING,
     },
 
@@ -32,12 +36,10 @@ module.exports = function (sequelize, DataTypes) {
   Cliente.associate = (models) => {
    
 
-
-    //Asociaciones
   
 
-  },
-    console.log("SOY CLIENTE:", Cliente === sequelize.models.Cliente);
+  };
+    
 
   return Cliente;
 };

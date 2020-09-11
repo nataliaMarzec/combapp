@@ -4,6 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
   
     await queryInterface.bulkInsert('Ventas', [{
+      nroVenta:1,
       fecha:new Date(),
       facturado:true,
       saldoCobrado:'100',

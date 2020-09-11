@@ -1,5 +1,6 @@
 var { Op } = require("sequelize");
 const { Cliente } = require("../models/sequelizeConnection.js");
+const cliente = require("../models/cliente.js");
 
 module.exports = {
   createCliente: (req, res) => {
@@ -13,6 +14,22 @@ module.exports = {
       email: req.body.email,
     });
     res.status(200).json(cliente);
+  },
+
+  async create(req, res) {
+    const cliente = req.body;
+
+    const { id, nombre,apellido, cuit,razonSocial,telefono, email } = await Cliente.create(cliente);
+
+    return res.json({
+      id,
+      nombre,
+      apellido,
+      cuit,
+      razonSocial,
+      telefono,
+      email,
+    });
   },
 
   getClientes: async (req, res, next) => {
@@ -66,4 +83,37 @@ module.exports = {
         });
       });
   },
+
+  updateCliente: (req, res) => {
+    const cliente = Cliente.update({
+      id: req.body.id,
+      nombre: req.body.nombre,
+      apellido:req.body.apellido,
+      cuit: req.body.cuit,
+      razonSocial:req.body.razonSocial,
+      telefono:req.body.telefono,
+      email: req.body.email,
+      
+    }).save(cliente)
+    .then((res)=>res.status(200).json(cliente))
+    .then(this.getClientes().push(cliente))
+    return cliente;
+
+  },
+
+  update(req, res) {
+    const cliente = Cliente.findById(req.params.id)
+      .update({
+        nombre: req.body.nombre || cliente.nombre,
+        apellido: req.body.apellido || cliente.apellido,
+        cuit: req.body.cuit || cliente.cuit,
+        razonSocial: req.body.razonSocial || cliente.razonSocial,
+        telefono:req.body.telefono|| cliente.telefono,
+        email: req.body.email || cliente.email,
+      }).update(cliente).save(cliente)
+      return cliente;
+  },
+
+
+      
 };

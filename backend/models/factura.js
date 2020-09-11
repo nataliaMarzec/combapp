@@ -6,18 +6,16 @@ module.exports = function (sequelize, DataTypes) {
   const Factura = sequelize.define(
     "Factura",
     {
+    id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
     fechaEmision: DataTypes.DATE,
-
-
     tipoComprobante: DataTypes.STRING,
-
-
     nroComprobante: DataTypes.STRING,
-
-
     ptoVenta: DataTypes.STRING
-
-
     },
 
     {
@@ -26,17 +24,11 @@ module.exports = function (sequelize, DataTypes) {
     }
   );
 
+  (Factura.associate = (models) => {
+  
 
-  //asociaciones
-
-
-
-
-
-
-
-
-    console.log("SOY Factura:", Factura === sequelize.models.Factura);
+  });
+  
 
   return Factura;
 };
