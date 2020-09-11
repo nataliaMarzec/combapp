@@ -18,7 +18,7 @@ module.exports = {
       tipoComprobante,
       nroComprobante,
       ptoVenta,
-    });
+    }).res.status(200).json(factura)
   },
   getFacturas: async (req, res, next) => {
     const facturas = await Factura.findAll();
