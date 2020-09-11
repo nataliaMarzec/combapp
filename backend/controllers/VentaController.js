@@ -1,19 +1,22 @@
 var { Op } = require("sequelize");
-const { Venta } = require("../models/sequelizeConnection.js");
+const { Venta,Articulo,Factura,Cliente} = require("../models/sequelizeConnection.js");
 
 module.exports = {
   
-  createVenta: (req, res) => {
-    const venta = Venta.create({
-      fecha: req.body.fecha,
-      facturado: req.body.facturado,
-      saldoCobrado: req.body.saldoCobrado,
-      montoSinCobrar: req.body.montoSinCobrar,
-      tipoDePago: req.body.tipoDePago,
-    });
-    res.status(200).json(venta);
-  },
+async create(req, res) {
+    const venta = req.body;
 
+    const { id,fecha,facturado,saldoCobrado,montoSinCobrar,tipoDePago}= await Venta.create(venta);
+
+    return res.json({
+      id,
+      fecha,
+      facturado,
+      saldoCobrado,
+      montoSinCobrar,
+      tipoDePago,
+    });
+  },
   getVentas: async (req, res, next) => {
     const ventas = await Venta.findAll();
     if (![req.body.values]) {
@@ -38,31 +41,17 @@ module.exports = {
     return res.json({ delete: "Venta eliminado" });
   },
 
-  updateVentaById: (request, result) => {
-    const paramID = request.params.id;
-    console.log(paramID);
-    console.log(request.body);
-    Venta.update(request.body, {
-      where: { id: paramID },
-    })
-      .then((num) => {
-        console.log(num[0]);
-        if (num[0] === 1) {
-          result.send({
-            message: "Venta completamente actualizado.",
-          });
-        } else {
-          result.send({
-            message: `No puede actualiza la Venta con  id=${paramID}!`,
-          });
-        }
-      })
-      .catch((err) => {
-        result.status(500).send({
-          message:
-            err.message ||
-            `Error mientras actualizaba la Venta con id=${paramID}!`,
-        });
-      });
-  },
+  async update(req, res) {
+    const venta= await Venta.findByPk(req.params.id);
+    const { id,fecha,facturado,saldoCobrado,montoSinCobrar,tipoDePago} = await venta.update(req.body);
+
+    return res.json({
+      id,
+      fecha,
+      facturado,
+      saldoCobrado,
+      montoSinCobrar,
+      tipoDePago,
+    });
+  }      
 };
