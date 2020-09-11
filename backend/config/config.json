@@ -1,7 +1,7 @@
 {
   "development": {
-    // "username": "root",
-    // "password": "",
+    "username": "nat",
+    "password": "Combapp_20",
     "database": "combapp",
     "host": "127.0.0.1",
     "dialect": "mysql"

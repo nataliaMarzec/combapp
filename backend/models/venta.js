@@ -17,7 +17,7 @@ module.exports = function (sequelize, DataTypes) {
       saldoCobrado: DataTypes.BIGINT.UNSIGNED,
       montoSinCobrar: DataTypes.BIGINT.UNSIGNED,
       tipoDePago: DataTypes.STRING,
-
+      // fechas,pagosDeCliente,articulos
 
     },
 
