@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 const ClienteModel=require('./cliente');
 const VentaModel=require('./venta');
 const FacturaModel = require('./factura');
-
+const ArticuloModel=require('./articulo');
 
 
 
@@ -32,7 +32,7 @@ models=Sequelize
 const Cliente= ClienteModel(sequelize,Sequelize);
 const Venta= VentaModel(sequelize,Sequelize);
 const Factura= FacturaModel(sequelize,Sequelize);
-
+const Articulo= ArticuloModel(sequelize,Sequelize)
 
 
 
@@ -71,8 +71,11 @@ module.exports = {
   sequelize,
   Cliente,
   Venta,
-  Factura
- 
+  Factura,
+  Articulo
+
+
+  
 };
 
 

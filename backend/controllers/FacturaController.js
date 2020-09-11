@@ -1,17 +1,19 @@
 var { Op } = require("sequelize");
 const { Factura } = require("../models/sequelizeConnection.js");
+const factura = require("../models/factura.js");
 
 module.exports = {
-  createFactura: (req, res) => {
-    const factura = Factura.create({
-      fechaEmision: req.body.fechaEmision,
-      tipoComprobante: req.body.tipoComprobante,
-      nroComprobante: req.body.nroComprobante,
-      ptoVenta: req.body.ptoVenta,
+  async create(req, res) {
+    const factura = req.body;
+  const {id,fechaEmision,tipoComprobante,nroComprobante,ptoVenta} = await Factura.create(factura);
+    return res.json({
+      id,
+      fechaEmision,
+      tipoComprobante,
+      nroComprobante,
+      ptoVenta,
     });
-    res.status(200).json(factura);
   },
-
   getFacturas: async (req, res, next) => {
     const facturas = await Factura.findAll();
     if (![req.body.values]) {
@@ -61,6 +63,11 @@ module.exports = {
             err.message ||
             `Error mientras actualizaba la Factura con id=${paramID}!`,
         });
-      });
+      })
+    
   },
+
+
+
+  
 };
