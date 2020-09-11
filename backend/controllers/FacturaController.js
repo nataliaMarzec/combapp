@@ -5,7 +5,13 @@ const factura = require("../models/factura.js");
 module.exports = {
   async create(req, res) {
     const factura = req.body;
-  const {id,fechaEmision,tipoComprobante,nroComprobante,ptoVenta} = await Factura.create(factura);
+    const {
+      id,
+      fechaEmision,
+      tipoComprobante,
+      nroComprobante,
+      ptoVenta,
+    } = await Factura.create(factura);
     return res.json({
       id,
       fechaEmision,
@@ -38,36 +44,22 @@ module.exports = {
     return res.json({ delete: "Factura eliminado" });
   },
 
-  updateFacturaById: (request, result) => {
-    const paramID = request.params.id;
-    console.log(paramID);
-    console.log(request.body);
-    Factura.update(request.body, {
-      where: { id: paramID },
-    })
-      .then((num) => {
-        console.log(num[0]);
-        if (num[0] === 1) {
-          result.send({
-            message: "Factura completamente actualizado.",
-          });
-        } else {
-          result.send({
-            message: `No puede actualiza la Factura con  id=${paramID}!`,
-          });
-        }
-      })
-      .catch((err) => {
-        result.status(500).send({
-          message:
-            err.message ||
-            `Error mientras actualizaba la Factura con id=${paramID}!`,
-        });
-      })
-    
+  async update(req, res) {
+    const factura = await Factura.findByPk(req.params.id);
+    const {
+      id,
+      fechaEmision,
+      tipoComprobante,
+      nroComprobante,
+      ptoVenta,
+    } = await factura.update(req.body);
+
+    return res.json({
+      id,
+      fechaEmision,
+      tipoComprobante,
+      nroComprobante,
+      ptoVenta,
+    });
   },
-
-
-
-  
 };
