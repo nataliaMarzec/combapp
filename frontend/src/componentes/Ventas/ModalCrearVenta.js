@@ -7,6 +7,7 @@ class ModalCrearVenta extends Component {
     super(props);
     this.state={
       modal: false,      
+      venta:this.props.venta,
       nroVenta:this.props.venta != null ? this.props.venta.nroVenta: "",
       id:this.props.venta != null ? this.props.venta.id:""
     };      
@@ -71,7 +72,7 @@ class ModalCrearVenta extends Component {
   }
   
   render() {
-    let datosVenta = this.state;
+    let {venta} = this.state;
     return (                                
          <div>              
         <Button outline color="success" onClick={this.toggle}>{this.props.buttonLabel} {this.props.texto} </Button>
@@ -81,7 +82,7 @@ class ModalCrearVenta extends Component {
         <ModalBody>
         <FormGroup>
           <Label for="nombre">Nro venta</Label>
-          <Input type="number" name="nroVenta" id="nroVenta" onChange={this.handleChange("nroVenta")} value={datosVenta.nroVenta}  />
+          <Input type="number" name="nroVenta" id="nroVenta" onChange={this.handleChange("nroVenta")} value={this.state.venta.nroVenta}  />
         </FormGroup>         
         </ModalBody>
         <ModalFooter>              

@@ -6,7 +6,9 @@
     "src",
     "src/componentes/Ventas",
     "src/componentes/Facturas",
-    "src/componentes/Clientes"
+    "src/componentes/Clientes",
+    "src/componentes/Articulos"
+    
   ]
   
 }

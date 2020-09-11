@@ -13,31 +13,13 @@ export default [
       {
         _tag: 'CSidebarNavItem',
         name: 'listado',
-        to: '/ventas',
+        to: '/ventas/',
         badge: {
           color: 'info',
           text: 'lista',
         }
       },
 
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'crearVenta',
-        to: '/ventas/crearVenta',
-        badge: {
-          color: 'info',
-          text: 'new',
-        }
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'borrarVenta',
-        to: '/ventas/:id',
-        badge: {
-          color: 'info',
-          text: 'details',
-        }
-      },
       
     ],
   },
@@ -57,24 +39,6 @@ export default [
         badge: {
           color: 'info',
           text: 'lista',
-        }
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Registrar Venta',
-        to: '/facturas/cargarFactura',
-        badge: {
-          color: 'info',
-          text: 'new',
-        }
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Detalle de Factura',
-        to: '/facturas/:id',
-        badge: {
-          color: 'info',
-          text: 'details',
         }
       },
       
@@ -97,26 +61,29 @@ export default [
           text: 'lista',
         }
       },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Registrar Cliente',
-        to: '/clientes/cargarCliente',
-        badge: {
-          color: 'info',
-          text: 'new',
-        }
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Detalle de Cliente',
-        to: '/clientes/:id',
-        badge: {
-          color: 'info',
-          text: 'details',
-        }
-      },
+
       
     ],
+  },
+    {
+      _tag: 'CSidebarNavDropdown',
+      name: 'Articulos',
+      route: '/articulos',
+      icon: 'cil-puzzle',
+  
+      _children: [
+        {
+          _tag: 'CSidebarNavItem',
+          name: 'listado',
+          to: '/articulos',
+          badge: {
+            color: 'info',
+            text: 'lista',
+          }
+        },
+  
+        
+      ],
   },
 
 

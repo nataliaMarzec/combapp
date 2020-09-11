@@ -15,7 +15,7 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import routes from "../routes";
-
+import {NavLink as Link} from "react-router-dom"
 import { TheHeaderDropdown, TheHeaderDropdownTasks } from "./index";
 
 const TheHeader = () => {
@@ -53,19 +53,20 @@ const TheHeader = () => {
       </CHeaderBrand>
 
       <CHeaderNav className="d-md-down-none mr-auto">
-        {/* <CDropdownMenu right> */}
+        
           <CHeaderNavItem className="px-3">
             <CHeaderNavLink to="/ventas">Ventas</CHeaderNavLink>
           </CHeaderNavItem>
-       
-          {/* <CHeaderNavItem>
-            <CLink to="/cargarVenta" className="nav-link">
-              Agregar Venta
-            </CLink>
-          </CHeaderNavItem> */}
-          {/* <CHeaderNavItem divider />
-          <CHeaderNavItem>Detalles</CHeaderNavItem>
-        </CDropdownMenu> */}
+          
+
+      
+
+
+
+
+
+
+
       </CHeaderNav>
 
       
@@ -82,10 +83,10 @@ const TheHeader = () => {
           <CLink
             className="c-subheader-nav-link"
             aria-current="page"
-            to="/dashboard"
+            to="/home"
           >
-            <CIcon name="cil-graph" alt="Dashboard" />
-            &nbsp;subheader
+            <CIcon name="cil-graph" alt="Home" />
+            &nbsp;*
           </CLink>
         </div>
       </CSubheader>

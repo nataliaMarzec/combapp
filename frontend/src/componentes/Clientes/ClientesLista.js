@@ -75,7 +75,7 @@ class ClientesLista extends React.Component {
                   <Table responsive bordered size="sm">
                     <thead>
                       <tr>
-                        {/* <th>id</th> */}
+                        <th>id</th>
                         <th>nombre</th>
                         <th>apellido</th>
                         <th>cuit</th>
