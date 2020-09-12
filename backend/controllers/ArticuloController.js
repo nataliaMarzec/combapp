@@ -3,20 +3,7 @@ const factura = require("../models/factura.js");
 const { Articulo } = require("../models/sequelizeConnection.js");
 
 module.exports = {
-  async update(req, res) {
-    const articulo = req.body;
-    const { id, nombre, codigo, descripcion, precio } = await Factura.create(
-      factura
-    );
 
-    return res.json({
-      id,
-      nombre,
-      codigo,
-      descripcion,
-      precio,
-    });
-  },
   async create(req, res) {
     const articulo = req.body;
 
@@ -30,7 +17,8 @@ module.exports = {
       codigo,
       descripcion,
       precio,
-    });
+    }).res.status(200).json({articulo: "Articulo creado"})
+    
   },
 
   getArticulos: async (req, res, next) => {

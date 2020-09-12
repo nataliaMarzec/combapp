@@ -111,7 +111,7 @@ class ArticulosLista extends React.Component {
     var nuevaLista = this.state.articulos.map((item) =>
       item.id !== unArticulo.id ? item : unArticulo
     );
-    this.setState({ articulos: nuevaLista, seleccionado:{},articulo:unArticulo });
+    this.setState({ articulos: nuevaLista, seleccionado:unArticulo });
   }
 
   deleteArticulo(id) {
@@ -127,7 +127,7 @@ class ArticulosLista extends React.Component {
           updateLista={this.updateLista}
           articuloChangedHandler={this.articuloChangeHandler}
           onDelete={this.deleteArticulo.bind(this)}
-        
+          
         />
       );
     });

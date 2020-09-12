@@ -5,7 +5,7 @@ class Articulo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { articulo: props.articulo };
-    this.seleccionarCliente = this.seleccionarArticulo.bind(this);
+    this.seleccionarArticulo = this.seleccionarArticulo.bind(this);
     this.deleteHandler = this.deleteHandler.bind(this);
     this.onDelete = this.onDelete.bind(this);
     this.deleteArticulo = this.deleteArticulo.bind(this);
@@ -14,6 +14,7 @@ class Articulo extends React.Component {
   seleccionarArticulo() {
     this.props.selector(this.props.articulo);
   }
+
 
   deleteArticulo(id) {
     var answer = window.confirm(
@@ -48,12 +49,13 @@ class Articulo extends React.Component {
     this.setState({ articulo: props.articulo });
   }
 
-  onEdit(unArticulo) {
-    this.seleccionarArticulo();
-    this.sendHandler();
-  }
+  // onEdit(unArticulo) {
+  //   this.seleccionarArticulo();
+  //   this.sendHandler();
+  // }
   sendHandler(event) {
-    fetch("http://localhost:8888/articulo", {
+    let {id}=this.state
+    fetch("http://localhost:8888/articulo"+id, {
       method: "put",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -62,8 +64,8 @@ class Articulo extends React.Component {
       body: JSON.stringify(this.state.articulo),
     })
       .then((res) => this.props.articuloChanged(this.state.articulo))
-      .then((res) => this.estadoInicial)
-      .then((res)=> this.setState(this.state.articulo));
+      .then((res) => this.estadoInicial())
+      // .then((res)=> this.setState(this.state.articulo));
     event.preventDefault();
   }
 
@@ -78,7 +80,7 @@ class Articulo extends React.Component {
 
   
         &nbsp;&nbsp;
-        <Button onClick={this.seleccionararticulo} outline color="primary">
+        <Button onClick={this.seleccionarArticulo} outline color="primary">
           {" "}
           seleccionar
         </Button>

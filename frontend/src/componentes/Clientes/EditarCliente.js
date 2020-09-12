@@ -49,9 +49,9 @@ class EditarCliente extends Component {
 }
   
 
-  sendHandler(event) {
+  sendHandler(event,id) {
   
-    fetch("http://localhost:8888/clientes", {
+    fetch("http://localhost:8888/clientes"+id, {
       method: "put",
       body: JSON.stringify(this.state.cliente),
       headers: {

@@ -3,7 +3,7 @@ const { Cliente } = require("../models/sequelizeConnection.js");
 const cliente = require("../models/cliente.js");
 
 module.exports = {
-  async create(req, res) {
+  create:async(req, res) =>{
     const cliente = req.body;
 
     const {
@@ -16,7 +16,7 @@ module.exports = {
       email,
     } = await Cliente.create(cliente);
 
-    return res.json({
+    return (res.json({
       id,
       nombre,
       apellido,
@@ -24,8 +24,10 @@ module.exports = {
       razonSocial,
       telefono,
       email,
-    });
+    })).res.status(200).json({cliente:"cliente creado"})
   },
+
+  
 
   getClientes: async (req, res, next) => {
     const clientes = await Cliente.findAll();

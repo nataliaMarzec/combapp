@@ -15,18 +15,11 @@ import {
 class EditarArticulo extends Component {
   constructor(props) {
     super(props);
-    this.state = { articulos:props.articulos,articulo: props.articulo != null ? this.props.articulo:{}};
+    this.state = { articulos:props.articulos,articulo: props.articulo};
     this.changeHandler = this.changeHandler.bind(this);
     this.estadoInicial = this.estadoInicial.bind(this);
     // this.sendHandler=this.sendHandler.bind(this);
     
-  }
-
-  componentWillMount() {
-    fetch(`http://localhost:8888/articulos`)
-      .then((res) => res.json())
-      .then((articulo)=>this.setState({articulo:articulo}))
-      .then((articulos) => this.setState({ articulos:articulos }));
   }
 
   estadoInicial() {
@@ -64,6 +57,7 @@ class EditarArticulo extends Component {
       .then(event.preventDefault());
 
   }
+  
 
   render() {
     return (

@@ -25,11 +25,6 @@ class VentasLista extends React.Component {
     this.updateLista = this.updateLista.bind(this);
     this.toggle = this.toggle.bind(this);
 
-    // this.state = { ventas: [], selected:{}}
-    // this.select = this.select.bind(this);
-    // this.ventaChange = this.ventaChange.bind(this);
-    // this.actualizarList = this.actualizarList.bind(this);
-    // this.listado = this.listado.bind(this);
   }
 
   toggle() {
@@ -99,9 +94,9 @@ class VentasLista extends React.Component {
                     <thead>
                       <tr>
                         <th>id</th>
-                        <th>nombre</th>
+                        <th>nroVenta</th>
                         <th>fecha</th>
-                        <th>facturado</th>
+                        {/* <th>facturado</th> */}
                         <th>saldoCobrado</th>
                         <th>montoSinCobrar</th>
                         <th>tipoDePago</th>
@@ -117,13 +112,13 @@ class VentasLista extends React.Component {
       </div>
     );
   }
-  // renderHeaders(columns) {
-  //   return columns.map((col, index) => {
-  //     return (
-  //         <th>{col}</th>
-  //     );
-  //   })
-  // }
+  renderHeaders(columns) {
+    return columns.map((col, index) => {
+      return (
+          <th>{col}</th>
+      );
+    })
+  }
   selectVenta(unaVenta) {
     this.setState({ seleccionado: unaVenta });
   }
@@ -133,7 +128,6 @@ class VentasLista extends React.Component {
       item.id !== unaVenta.id ? item : unaVenta
     );
     this.setState({ ventas: nuevaLista, seleccionado: unaVenta });
-    // this.setState({ ventas: nuevaLista, seleccionado: {},venta:unaVenta });
   }
 
   updateLista(unaVenta) {
@@ -154,10 +148,6 @@ class VentasLista extends React.Component {
     return this.state.ventas.map((unaVenta, index) => {
       return (
         <Venta
-          // venta={unaVenta}
-          //   selector={this.select}
-          //   actualizarList={this.actualizarList}
-          //no ventaChangeHandler
           venta={unaVenta}
           selector={this.selectVenta}
           updateLista={this.updateLista}

@@ -15,7 +15,7 @@ async create(req, res) {
       saldoCobrado,
       montoSinCobrar,
       tipoDePago,
-    });
+    }).res.status(200).json(venta)
   },
   getVentas: async (req, res, next) => {
     const ventas = await Venta.findAll();
