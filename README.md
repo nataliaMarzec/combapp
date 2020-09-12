@@ -21,8 +21,6 @@
 
 [Comenzando](https://github.com/nataliaMarzec/combapp/wiki/Prueba-de-conceptos)
 
-[Backend-wiki](https://github.com/nataliaMarzec/combapp/wiki/Backend)
-
 [Backend-Iniciando](https://github.com/nataliaMarzec/combapp/wiki/Backend.Iniciando.)
 
 [Backend-Persistencia](https://github.com/nataliaMarzec/combapp/wiki/Backend.Persistencia.)
