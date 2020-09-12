@@ -1,14 +1,10 @@
 import React from "react";
 import Venta from "./Venta";
-import CargarVenta from "./CargarVenta";
 import EditarVenta from "./EditarVenta";
 import {
   Table,
   Container,
   Row,
-  Button,
-  Modal,
-  ModalHeader,
   Col,
   Card,
   CardHeader,
@@ -44,35 +40,8 @@ class VentasLista extends React.Component {
       <div className="container">
         <Row>&nbsp;</Row>
         <Container fluid>
-          {/* <EditarCliente
-            venta={this.state.seleccionado}
-            ventaChange={this.ventaChangeHandler}
-            listadoVentas={this.listadoVentas}
-            updateLista={this.updateLista}
-            // onSubmit={this.props.handleSubmit}
-          />*/}
-          
-          {/* <Button color="success" onClick={this.toggle}>
-            Nueva Venta
-          </Button> 
-          <Modal
-            isOpen={this.state.modal}
-            toggle={this.toggle}
-            className={this.props.className}
-          >
-            <ModalHeader toggle={this.toggle}>
-              <strong>Nueva</strong>Venta
-            </ModalHeader>
-
-            <CargarVenta
-              venta={this.state.seleccionado}
-              ventaChanged={this.ventaChangeHandler}
-              listadoVentas={this.listadoVentas}
-              updateLista={this.updateLista}
-            />
-          </Modal> */}
-
-          <Row>&nbsp;</Row>
+       
+         <Row>&nbsp;</Row>
         </Container>
 
         <div className="animated fadeIn">
@@ -96,10 +65,11 @@ class VentasLista extends React.Component {
                         <th>id</th>
                         <th>nroVenta</th>
                         <th>fecha</th>
-                        {/* <th>facturado</th> */}
+                        <th>facturado</th>
                         <th>saldoCobrado</th>
                         <th>montoSinCobrar</th>
                         <th>tipoDePago</th>
+                        <th>acciones</th>
                       </tr>
                     </thead>
                     <tbody>{this.renderRows()}</tbody>
@@ -159,31 +129,6 @@ class VentasLista extends React.Component {
   }
 
 }
-{
-  /* <h5>Lista de ventas</h5>
-           <Table hover bordered striped>
-          <thead>
-            <tr>            
-              <th>nroVenta</th>
-              
-            </tr>
-          </thead>
-          <tbody>
-            {ventas.map((venta,key) => {               
-              return (<tr key={key}>
-                <td >{venta.nroVenta}</td>
-                <td>
-                  <ModalCrearVenta texto={"Editar"} venta={venta}/>
-                  <ModalBorrarVenta texto={"Eliminar"} venta={venta}/> 
-                  </td>
-              </tr>)
-            })}
-            
-  
-          </tbody>
-        </Table>
-        </Jumbotron>
-          </main>     */
-}
+
 
 export default VentasLista;

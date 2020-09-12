@@ -22,27 +22,16 @@ class EditarVenta extends Component {
       venta: props.venta != null ? this.props.venta : {},
       fechas: props.fechas,
       pagos: props.pagos,
-    };
-    this.changeHandler = this.changeHandler.bind(this);
-    this.estadoInicial = this.estadoInicial.bind(this);
-    // this.sendHandler=this.sendHandler.bind(this);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleChange2 = this.handleChange2.bind(this);
-    this.listaDeFechaNueva = this.listaDeFechaNueva.bind(this);
-    // this.addTodo = this.addTodo.bind(this);
-    this.state = {
-      ver: true,
       selectedOption: "",
       options: null,
       todos: [],
       fecha: "",
       listaFecha: [],
-      venta: props.venta,
     };
-    //   this.estadoInicial = this.estadoInicial.bind(this);
-    //   this.setFechas = this.setFechas.bind(this);
+    this.changeHandler = this.changeHandler.bind(this);
+    this.estadoInicial=this.estadoInicial.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  
   }
   componentWillReceiveProps(props) {
     this.setState({ props });
@@ -68,36 +57,10 @@ class EditarVenta extends Component {
     });
   }
 
-  listaDeFechaNueva = () => {
-    let nuevaFecha = this.state.fecha;
-    console.log("nuevaFecha", nuevaFecha);
-    console.log("listaNuevaState", this.state);
-
-    let fechasVentas = this.state.options.map(function (f) {
-      return f.label;
-    });
-    fechasVentas.push(nuevaFecha);
-    console.log("lista", fechasVentas);
-    this.setFechas(fechasVentas);
-  };
-  listo = () => {
-    let text = this.state.todos.map(function (p) {
-      return p.text;
-    });
-    console.log("listas", this.state.todos);
-    console.log("text", text);
-    var { venta } = this.state;
-    venta.fechas = text;
-    this.setState({venta: venta }, console.log(this.state.venta));
-  };
-
   handleSubmit = (event) => {
-    if (this.state.venta.id) {
-    //   this.listaDeFechaNueva();
-    // this.setFechas();
+    if (this.state.venta.id!==null) {
     this.editarVenta();
     } else {
-    //   this.listo();
       this.agregarVenta();
     }
     event.preventDefault();
@@ -130,6 +93,8 @@ class EditarVenta extends Component {
       .then(this.estadoInicial);
   };
 
+  
+
   setFechas(dates) {
     console.log(dates);
     var nuevaVenta = Object.assign({}, this.state.venta);
@@ -142,32 +107,8 @@ class EditarVenta extends Component {
     var nuevaVenta = Object.assign({}, this.state.venta);
     nuevaVenta[event.target.name] = event.target.value;
     this.setState({ venta: nuevaVenta });
-    // this.setState({clientes:this.props.clientes, cliente: nuevaVenta });
+  
   }
-
-  // removeItemFromArr(arr, item) {
-  //     var i = arr.indexOf(item);
-  //     arr.splice(i, 1);
-  //   }
-  //   handleChange2 = (selectedOption) => {
-  //     this.setState(
-  //       { selectedOption },
-  //       this.removeItemFromArr(this.state.options, this.state.selectedOption)
-  //     );
-  //     console.log("state", this.state);
-  //     }
-
-  modificarFecha = (event) => {
-    this.setState({
-      options: this.state.venta.fechas.map(function (f) {
-        const data = moment(f).format("DD-MM-YYYY");
-        const data2 = { label: data };
-        return data2;
-      }),
-    });
-    this.setState({ ver: false });
-    event.preventDefault();
-  };
 
   render() {
     const { selectedOption } = this.state;
@@ -196,22 +137,32 @@ class EditarVenta extends Component {
                   />
                 </Col>
               </FormGroup>
-              <FormGroup row>
-                <Col md="3">
-                  <Label for="fecha">fecha</Label>
-                </Col>
-                <Col xs="12" md="9">
-                  <Input
-                    type="text"
-                    id="fecha"
-                    name="fecha"
-                    placeholder="Completa Email..."
-                    required={false}
-                    value={this.state.venta.fecha}
-                    onChange={this.changeHandler}
-                  />
-                </Col>
-              </FormGroup>
+         <FormGroup row>
+          <div class="row align-items-start">
+            {" "}
+            {this.state.ver === false ? (
+              <div class="col-4">
+                <Select
+                  type="date"
+                  placeholder={"SelectFecha"}
+                  value={selectedOption}
+                  onChange={this.handleChange2}
+                  options={this.state.options}
+                />
+                <Input type="text" value={this.state.selectedOption.label} />
+                <Input
+                  type="date"
+                  placeholder="Fecha"
+                  name="fecha"
+                  value={this.state.fecha}
+                  onChange={this.nuevaFecha}
+                />
+              </div>
+            ) : (
+              true
+            )}
+          </div>
+          </FormGroup>
               <FormGroup row>
                 <Col md="3">
                   <Label for="facturado">facturado</Label>
@@ -223,7 +174,7 @@ class EditarVenta extends Component {
                     name="facturado"
                     placeholder="Completa fecha..."
                     required={false}
-                    // value={this.state.venta.facturado }
+                    value={this.state.venta.facturado }
                     onChange={this.changeHandler}
                   />
                 </Col>
@@ -276,47 +227,13 @@ class EditarVenta extends Component {
                   />
                 </Col>
               </FormGroup>
-              {/* emp */}
-              {/* <div>
-          <div class="row align-items-start">
-            {" "}
-            {this.state.ver === false ? (
-              <div class="col-4">
-                <Select
-                  type="date"
-                  placeholder={"SelectFecha"}
-                  value={selectedOption}
-                  onChange={this.handleChange2}
-                  options={this.state.options}
-                />
-                <input type="text" value={this.state.selectedOption.label} />
-                <input
-                  type="date"
-                  placeholder="Fecha"
-                  name="fecha"
-                  value={this.state.fecha}
-                  onChange={this.nuevaFecha}
-                />
-              </div>
-            ) : (
-              true
-            )}
-          </div>
-        </div>
-           term */}
+            
             </Form>
           </CardBody>
           <CardFooter>
-            {/* <Button
-              type="submit"
-              size="sm"
-              color="primary"
-              onClick={(e) => this.sendHandler(e)}
-            >
-              <i className="fa fa-dot-circle-o"></i>Guardar cambios
-            </Button> */}
+
             <Button style={{ margin: "5px" }} onClick={this.handleSubmit}>
-              Crear/Editar
+              Guardar
             </Button>
             <Button style={{ margin: "5px" }} onClick={this.modificarFecha}>
               EditarFecha
@@ -330,34 +247,3 @@ class EditarVenta extends Component {
 
 export default EditarVenta;
 
-//         <div>
-//           {this.state.ver === true ? (
-//             <div>
-//               <CargarVenta onSubmit={this.addTodo} />
-//               {todos.map((todo) => (
-//                 <Todo
-//                   key={todo.id}
-//                   toggleComplete={() => this.toggleComplete(todo.id)}
-//                   onDelete={() => this.handleDeleteTodo(todo.id)}
-//                   todo={todo}
-//                 />
-//               ))}
-//               <div>
-//                 Total:{this.state.todos.filter((todo) => !todo.complete).length}
-//               </div>
-//             </div>
-//           ) : (
-//             false
-//           )}
-//         </div>
-
-//         <button style={{ margin: "5px" }} onClick={this.modificarFecha}>
-//           Editar
-//         </button>
-//         <button style={{ margin: "5px" }} onClick={this.handleSubmit}>
-//           Listo
-//         </button>
-//       </form>
-//     );
-//   }
-// }

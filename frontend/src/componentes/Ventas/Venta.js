@@ -10,11 +10,6 @@ class Venta extends React.Component {
     this.onDelete = this.onDelete.bind(this);
     this.deleteVenta = this.deleteVenta.bind(this);
 
-    // this.selectVenta = this.selectVenta.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);->this.deleteHandler
-    // this.state = {venta:props.venta};
-    // this.actualizar = this.actualizar.bind(this);
-    // this.estadoInicial=this.estadoInicial.bind(this);
   }
 
   seleccionarVenta() {
@@ -85,7 +80,6 @@ class Venta extends React.Component {
   render() {
     return (
       <tr>
-        {/* <tr key={this.props.venta.id} onClick={this.selectVenta}></tr> */}
         <td>{this.props.venta.id}</td>
         <td>{this.props.venta.nroVenta}</td>
         <td>{this.props.venta.facturado}</td>

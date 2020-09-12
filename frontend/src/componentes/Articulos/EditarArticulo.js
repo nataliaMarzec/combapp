@@ -18,7 +18,7 @@ class EditarArticulo extends Component {
     this.state = { articulos:props.articulos,articulo: props.articulo};
     this.changeHandler = this.changeHandler.bind(this);
     this.estadoInicial = this.estadoInicial.bind(this);
-    // this.sendHandler=this.sendHandler.bind(this);
+
     
   }
 
@@ -34,7 +34,6 @@ class EditarArticulo extends Component {
  
 
   changeHandler(event) {
-    // console.log(event.target.value);
     var nuevoarticulo = Object.assign({}, this.state.articulo);
     nuevoarticulo[event.target.name] = event.target.value;
     this.setState({articulos:this.props.articulos, articulo: nuevoarticulo });

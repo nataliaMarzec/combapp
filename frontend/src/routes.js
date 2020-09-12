@@ -7,8 +7,6 @@ import CargarFactura from './componentes/Facturas/CargarFactura.js'
 import ClientesLista from './componentes/Clientes/ClientesLista.js'
 import Cliente from './componentes/Clientes/Cliente.js'
 import CargarCliente from './componentes/Clientes/CargarCliente.js'
-import ModalBorrarVenta from './componentes/Ventas/ModalBorrarVenta'
-import ModalCrearVenta from './componentes/Ventas/ModalCrearVenta'
 import ArticulosLista from './componentes/Articulos/ArticulosLista'
 import Articulo from './componentes/Articulos/Articulo'
 import CargarArticulo from './componentes/Articulos/CargarArticulo'
@@ -16,9 +14,8 @@ import EditarArticulo from './componentes/Articulos/EditarArticulo'
 import VentasLista from './componentes/Ventas/VentasLista.js'
 import EditarVenta from './componentes/Ventas/EditarVenta.js';
 import Venta from './componentes/Ventas/Venta'
-// import CargarVenta from './componentes/Ventas/CargarVenta'
-// import Fecha from './componentes/Ventas/Fecha'
-// import VentaFecha from './componentes/Ventas/VentaFecha'
+
+
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -26,8 +23,8 @@ const routes = [
   { path: '/ventas', exact: true,  name: 'ventas', component: VentasLista },
   {path:'/ventas/venta', exact: true,  name: 'venta', component: Venta },
   {path: '/ventas/editarVenta',exact:false,name:'editarVenta',component:EditarVenta},
-  // {path: '/ventas/cargarVenta',exact:true,name:'cargarVenta',component:CargarVenta},
-  // {path: '/ventas/fecha',exact:true,name:'fecha',component:Fecha},
+  
+
 
 
   { path: '/facturas', exact: true,  name: 'Facturas', component: FacturasLista },
