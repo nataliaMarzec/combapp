@@ -15,7 +15,6 @@ class Articulo extends React.Component {
     this.props.selector(this.props.articulo);
   }
 
-
   deleteArticulo(id) {
     var answer = window.confirm(
       "¿ELIMINAR  " + this.state.articulo.nombre + " ?"
@@ -39,23 +38,19 @@ class Articulo extends React.Component {
     }).then(this.onDelete);
   }
 
-  
   estadoInicial() {
-    this.setState({ articulo: { nombre: "",codigo:"",descripcion:"",precio: "" } });
+    this.setState({
+      articulo: { nombre: "", codigo: "", descripcion: "", precio: "" },
+    });
   }
 
-  
   componentWillReceiveProps(props) {
     this.setState({ articulo: props.articulo });
   }
 
-  // onEdit(unArticulo) {
-  //   this.seleccionarArticulo();
-  //   this.sendHandler();
-  // }
   sendHandler(event) {
-    let {id}=this.state
-    fetch("http://localhost:8888/articulo"+id, {
+    let { id } = this.state;
+    fetch("http://localhost:8888/articulo" + id, {
       method: "put",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -64,8 +59,7 @@ class Articulo extends React.Component {
       body: JSON.stringify(this.state.articulo),
     })
       .then((res) => this.props.articuloChanged(this.state.articulo))
-      .then((res) => this.estadoInicial())
-      // .then((res)=> this.setState(this.state.articulo));
+      .then((res) => this.estadoInicial());
     event.preventDefault();
   }
 
@@ -77,8 +71,6 @@ class Articulo extends React.Component {
         <td>{this.props.articulo.codigo}</td>
         <td>{this.props.articulo.descripcion}</td>
         <td>{this.props.articulo.precio}</td>
-
-  
         &nbsp;&nbsp;
         <Button onClick={this.seleccionarArticulo} outline color="primary">
           {" "}
