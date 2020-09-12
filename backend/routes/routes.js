@@ -22,14 +22,14 @@ router.delete('/ventas/:id',(controllerVenta.deleteVentaById))
 router.put('/ventas/:id',controllerVenta.update)
 
 
-// router.post('/facturas',(controllerFactura.create))
+router.post('/facturas',(controllerFactura.create))
 router.get('/facturas/:id',(controllerFactura.getFacturaId))
 router.get('/facturas',(controllerFactura.getFacturas))
 router.delete('/facturas/:id',(controllerFactura.deleteFacturaById))
 router.put('/facturas/:id',controllerFactura.update)
 
 
-// router.post('/articulos',(controllerArticulo.create))
+router.post('/articulos',(controllerArticulo.create))
 router.get('/articulos/:id',(controllerArticulo.getArticuloId))
 router.get('/articulos',(controllerArticulo.getArticulos))
 router.delete('/articulos/:id',(controllerArticulo.deleteArticuloById))

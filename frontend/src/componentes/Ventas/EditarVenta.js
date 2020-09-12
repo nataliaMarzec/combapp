@@ -223,7 +223,7 @@ class EditarVenta extends Component {
                     name="facturado"
                     placeholder="Completa fecha..."
                     required={false}
-                    value={this.state.venta.facturado }
+                    // value={this.state.venta.facturado }
                     onChange={this.changeHandler}
                   />
                 </Col>

@@ -122,11 +122,6 @@ class FacturasLista extends React.Component {
 
   selectFactura(unaFactura) {
     this.setState({ seleccionado: unaFactura });
-    this.setState({ id: unaFactura.id });
-    this.setState({ nroComprobante: unaFactura.nroComprobante });
-    this.setState({ fechaEmision: unaFactura.fechaEmision });
-    this.setState({ tipoComprobante: unaFactura.tipoComprobante });
-    this.setState({ ptoVenta: unaFactura.ptoVenta });
   }
   estadoInicial() {
     this.setState({

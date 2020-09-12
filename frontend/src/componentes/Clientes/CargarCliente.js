@@ -9,7 +9,7 @@ class CargarCliente extends React.Component {
     this.state = { cliente: props.cliente, modal: false };
     this.changeHandler = this.changeHandler.bind(this);
     this.estadoInicial = this.estadoInicial.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
+  
   }
 
   toggle() {

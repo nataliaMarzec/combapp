@@ -24,7 +24,7 @@ module.exports = {
       razonSocial,
       telefono,
       email,
-    })).res.status(200).json(cliente)
+    })).res.status(200).json({cliente:"cliente creado"})
   },
 
   
