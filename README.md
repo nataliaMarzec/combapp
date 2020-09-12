@@ -19,9 +19,14 @@
  
 ### Trabajo Inicial:
 
-[Comenzando](https://github.com/nataliaMarzec/combapp/wiki/Comenzando.-Combapp)
+[Comenzando](https://github.com/nataliaMarzec/combapp/wiki/Prueba-de-conceptos)
+
 [Backend-wiki](https://github.com/nataliaMarzec/combapp/wiki/Backend)
+
 [Backend-Iniciando](https://github.com/nataliaMarzec/combapp/wiki/Backend.Iniciando.)
+
 [Backend-Persistencia](https://github.com/nataliaMarzec/combapp/wiki/Backend.Persistencia.)
+
 [Frontend-Iniciando](https://github.com/nataliaMarzec/combapp/wiki/Frontend.Iniciando.)
+
 [Webgrafía](https://github.com/nataliaMarzec/combapp/wiki/Webgraf%C3%ADa)
