@@ -28,3 +28,5 @@
 [Frontend-Iniciando](https://github.com/nataliaMarzec/combapp/wiki/Frontend.Iniciando.)
 
 [Webgrafía](https://github.com/nataliaMarzec/combapp/wiki/Webgraf%C3%ADa)
+
+[Prueba de conceptos](https://github.com/nataliaMarzec/combapp/wiki/Prueba-de-conceptos)
