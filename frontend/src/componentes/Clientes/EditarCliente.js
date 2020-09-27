@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from "react";
 import {
   Col,
   Card,
@@ -15,7 +16,7 @@ import {
 class EditarCliente extends Component {
   constructor(props) {
     super(props);
-    this.state = { clientes:props.clientes,cliente: props.cliente != null ? this.props.cliente:{}};
+    this.state = { clientes:props.clientes,cliente: props.cliente != null ? this.props.cliente:""};
     this.changeHandler = this.changeHandler.bind(this);
     this.estadoInicial = this.estadoInicial.bind(this);
     // this.sendHandler=this.sendHandler.bind(this);
@@ -23,7 +24,7 @@ class EditarCliente extends Component {
   }
 
   componentWillMount() {
-    fetch(`http://localhost:8888/clientes/cliente/:id`)
+    fetch(`http://localhost:8888/clientes`)
       .then((res) => res.json())
       .then((cli)=>this.setState({cliente:cli}))
       .then((cliens) => this.setState({ clientes: cliens }));
@@ -41,17 +42,17 @@ class EditarCliente extends Component {
  
 
   changeHandler(event) {
-    // console.log(event.target.value);
+    console.log("change handler_______",event.target.value);
     var nuevoCliente = Object.assign({}, this.state.cliente);
     nuevoCliente[event.target.name] = event.target.value;
-    this.setState({clientes:this.props.clientes, cliente: nuevoCliente });
-    
+    this.setState({cliente: nuevoCliente });
+    console.log("change handler-clientes/cliente____",{clientes:this.props.clientes,cliente:nuevoCliente})
 }
   
 
-  sendHandler(event,id) {
-  
-    fetch("http://localhost:8888/clientes"+id, {
+  sendHandler(event) {
+    console.log("cliente para editar/clientesLista",this.state.cliente,this.state.clientes)
+    fetch("http://localhost:8888/clientes", {
       method: "put",
       body: JSON.stringify(this.state.cliente),
       headers: {

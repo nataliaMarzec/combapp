@@ -6,7 +6,7 @@ class CargarCliente extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { cliente: props.cliente, modal: false };
+    this.state = {clientes:props.clientes,cliente: props.cliente, modal: false };
     this.changeHandler = this.changeHandler.bind(this);
     this.estadoInicial = this.estadoInicial.bind(this);
   
@@ -38,15 +38,16 @@ class CargarCliente extends React.Component {
 
 
   addHandler(event) {
+    console.log("agregar p/cliente/clientesLista",this.state.cliente,this.state.clientes)
     fetch("http://localhost:8888/clientes", {
       method: "post",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(this.state.cliente),
-    })
-      .then((res) => this.props.listadoClientes())
+        body: JSON.stringify(this.state.cliente),
+    }).then((res)=>console.log(this.state.clientes,this.state.cliente))
+      .then((res) => console.log(this.props.listadoClientes()))
       .then((res) => this.estadoInicial());
     event.preventDefault();
   }

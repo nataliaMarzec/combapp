@@ -115,7 +115,7 @@ class ClientesLista extends React.Component {
       item.id !== unCliente.id ? item : unCliente
     );
     // this.setState({ clientes: nuevaLista, seleccionado: unCliente });
-    this.setState({ clientes: nuevaLista, seleccionado: {},cliente:unCliente });
+    this.setState({ clientes: nuevaLista, seleccionado:unCliente,cliente:{} });
   }
 
   deleteCliente(id) {

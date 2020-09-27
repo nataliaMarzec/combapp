@@ -24,7 +24,9 @@ module.exports = {
       razonSocial,
       telefono,
       email,
-    })).res.status(200).json({cliente:"cliente creado"})
+    }))
+    // .then(res.status(200))
+       .then(res.json({cliente:"cliente creado"}))
   },
 
   
