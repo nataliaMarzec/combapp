@@ -9,7 +9,6 @@
     "local:migrate": "node_modules/.bin/sequelize db:migrate",
     "local:migrate:undo": "node_modules/sequelize-cli/lib/sequelize db:migrate:undo",
     "local:seeds": "node_modules/.bin/sequelize db:seed:all"
-
   },
   "repository": {
     "type": "git",
@@ -33,12 +32,12 @@
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "mysql2": "^2.1.0",
+    "redis": "^3.0.2",
     "sequelize": "^6.3.4"
   },
   "devDependencies": {
     "sequelize-cli": "^6.2.0"
   },
-
   "development": {
     "username": "nat",
     "password": "Combapp_20",
