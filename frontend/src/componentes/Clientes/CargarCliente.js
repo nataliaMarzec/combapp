@@ -47,7 +47,7 @@ class CargarCliente extends React.Component {
       },
         body: JSON.stringify(this.state.cliente),
     }).then((res)=>console.log(this.state.clientes,this.state.cliente))
-      .then((res) => console.log(this.props.listadoClientes()))
+      .then((res) => console.log("listado clientes__",this.props.listadoClientes()))
       .then((res) => this.estadoInicial());
     event.preventDefault();
   }
