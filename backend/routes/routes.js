@@ -5,7 +5,7 @@ const controllerVenta = require('../controllers/VentaController');
 const controllerFactura = require('../controllers/FacturaController');
 const controllerArticulo = require('../controllers/ArticuloController')
 const controllerUsuario= require('../controllers/UsuarioController')
-
+// const UserController=require('../controllers/UserController')
 router.get('/hola',(req,res)=>res.send('ok'));
 router.post('/clientes',(controllerCliente.create))
 router.get('/clientes/:id',(controllerCliente.getClienteId))
@@ -19,8 +19,10 @@ router.post('/ventas',(controllerVenta.create))
 router.get('/ventas/:id',(controllerVenta.getVentaId))
 router.get('/ventas',(controllerVenta.getVentas))
 router.delete('/ventas/:id',(controllerVenta.deleteVentaById))
-router.put('/ventas/:id',controllerVenta.update)
-
+router.put('/ventas/',controllerVenta.update)
+router.get('/ventas/facturadas',controllerVenta.getVentasFacturadas)
+// router.get('/ventas/fecha',controllerVenta.getVentasFecha)
+// router.get('ventas/fechas',controllerVenta.getFechas)
 
 router.post('/facturas',(controllerFactura.create))
 router.get('/facturas/:id',(controllerFactura.getFacturaId))
@@ -45,6 +47,10 @@ router.put('/usuario',controllerUsuario.update)
 
 
 
+// routes.put('/users/:id', validateUserUpdate, UserController.update);
+// router.get('/users/', UserController.index);
+// router.get('/user/:id', UserController.index);
+// router.delete('/users/:id', UserController.delete);
 
 
 

@@ -14,11 +14,11 @@ module.exports = function (sequelize, DataTypes) {
       nombre: {
 		    type:DataTypes.STRING,
 		    allowNull:false,
-	    //  validate: {
-		  //    notNull: {
-	    //  		msg: 'Por favor completa tu nombre'
-      //  }
-      // }
+	     validate: {
+		     notNull: {
+	     		msg: 'Por favor completa tu nombre'
+       }
+      }
 		},
       apellido: DataTypes.STRING,
       cuit: DataTypes.BIGINT.UNSIGNED,

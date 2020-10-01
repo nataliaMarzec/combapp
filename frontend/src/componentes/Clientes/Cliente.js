@@ -38,9 +38,9 @@ class Cliente extends React.Component {
     }).then(this.onDelete);
   }
 
-  //
+  
   estadoInicial() {
-    this.setState({ cliente: { nombre: "",apellido:"",cuit:"",cuit: "",razonSocial:"",telefono:"", email: "" } });
+    this.setState({ cliente: { nombre: "",apellido:"",cuit: "",razonSocial:"",telefono:"", email: "" } });
   }
   
   componentWillReceiveProps(props) {

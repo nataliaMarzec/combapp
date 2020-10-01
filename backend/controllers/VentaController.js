@@ -53,5 +53,65 @@ async create(req, res) {
       montoSinCobrar,
       tipoDePago,
     });
-  }      
+  },  
+  getVentasFacturadas: async (req, res, next) => {
+    const ventasFacturadas = await Venta.findAll({where:{facturado:true}});
+    if ([req.body.values]>0) {
+      res.status(200).json("ventas facturadas obtenidas:",ventasFacturadas);
+    } else {
+      if(Venta)
+      return res.status(400).json(err,"no obtiene ventas facturadas");
+    }
+  },
+  
+  getVentasFecha: async (req, res, next) => {
+      var ventasConFecha = await Venta.findAll({where:{fecha:req.params.fecha}});
+      if (![req.body.values]) {
+        res.status(400).json({ err: "No hay ventas en esa fecha" });
+      } else {
+        return res.status(200).json(ventasConFecha);
+      }
+    },
+  // getFechas:async(req,res)=>{
+  //   var fechas=await Venta.findAll({where:{fechas:req.params.fechas}})
+  //   if (![req.body.values]) {
+  //     res.status(400).json({ err: "No hay fechas" });
+  //   } else {
+  //     return res.status(200).json(fechas);
+  //   }
+  // },
+  // getFecha:async(req,res) => {
+  //   ventasFecha=await Venta.findAll();
+  //   var query = {}
+  //   if (req.query.fecha) {
+  //     console.log(`Query ventas fecha: ${req.query.fecha}`)
+  //     var fecha = (req.query.fecha)
+  //     query = {"fecha" : fecha }
+  //   }else{
+  //     return res.status(400).json(ventasFecha)
+  //   }        
+  // },
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 };

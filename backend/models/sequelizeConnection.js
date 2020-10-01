@@ -1,5 +1,5 @@
 'use strict'
-// const {DBURL} = require('../env/config');
+const {DBURL} = require('../env/config');
 const Sequelize = require('sequelize');
 const ClienteModel=require('./cliente');
 const VentaModel=require('./venta');
@@ -9,8 +9,7 @@ const UsuarioModel=require('./usuario');
 
 
 
-
-const DBURL='mysql://nat:Combapp_20@localhost:3306/combapp'
+// const DBURL='mysql://nat:Combapp_20@localhost:3306/combapp'
 let sequelize=new Sequelize(DBURL,{
    operatorsAliases:'false',
     pool: {
@@ -25,12 +24,11 @@ var models={}
 models=sequelize
 models=Sequelize
 
-const Cliente= ClienteModel(sequelize,Sequelize);
-const Venta= VentaModel(sequelize,Sequelize);
-const Factura= FacturaModel(sequelize,Sequelize);
+const Cliente= ClienteModel(sequelize,Sequelize)
+const Venta= VentaModel(sequelize,Sequelize)
+const Factura= FacturaModel(sequelize,Sequelize)
 const Articulo= ArticuloModel(sequelize,Sequelize)
 const Usuario=UsuarioModel(sequelize,Sequelize)
-
 
 
 
@@ -57,9 +55,8 @@ module.exports = {
   Venta,
   Factura,
   Articulo,
-  Usuario
+  Usuario,
 
- 
   
 };
 

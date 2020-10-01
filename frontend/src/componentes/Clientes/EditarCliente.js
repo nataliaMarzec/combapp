@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from "react";
 import {
   Col,
   Card,
@@ -16,7 +15,7 @@ import {
 class EditarCliente extends Component {
   constructor(props) {
     super(props);
-    this.state = { clientes:props.clientes,cliente: props.cliente != null ? this.props.cliente:""};
+    this.state = { btn_status: true,clientes:[],cliente: props.cliente != null ? this.props.cliente:""};
     this.changeHandler = this.changeHandler.bind(this);
     this.estadoInicial = this.estadoInicial.bind(this);
     // this.sendHandler=this.sendHandler.bind(this);
@@ -45,28 +44,31 @@ class EditarCliente extends Component {
     console.log("change handler_______",event.target.value);
     var nuevoCliente = Object.assign({}, this.state.cliente);
     nuevoCliente[event.target.name] = event.target.value;
-    this.setState({cliente: nuevoCliente });
+    this.setState({cliente: nuevoCliente,clientes:this.props.clientes });
     console.log("change handler-clientes/cliente____",{clientes:this.props.clientes,cliente:nuevoCliente})
 }
   
 
   sendHandler(event) {
-    console.log("cliente para editar/clientesLista",this.state.cliente,this.state.clientes)
-    fetch("http://localhost:8888/clientes", {
+    // let{cliente,clientes}={...props}
+    // console.log("editar id",id)
+    console.log("cliente para editar/clientesLista"+this.state.id,this.state.cliente.id)
+    fetch("http://localhost:8888/clientes"+this.state.cliente.id, {
       method: "put",
-      body: JSON.stringify(this.state.cliente),
+      body: JSON.stringify(this.state.cliente.id),
       headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },
     })
-      .then((res) => this.props.clienteChange(this.state.cliente))   
-      .then((res) => this.estadoInicial())
+      .then((res) => this.props.clienteChange(this.state.cliente.id))   
+      .then((res)=>this.estadoInicial())
       .then(event.preventDefault());
 
   }
 
   render() {
+    let {cliente}=this.state
     return (
       <Col xs="6" md="6">
         <Card>
@@ -130,7 +132,7 @@ class EditarCliente extends Component {
               type="submit"
               size="sm"
               color="primary"
-              onClick={(e)=>this.sendHandler(e)}
+              onClick={(event)=>this.sendHandler(event)}
             >
               <i className="fa fa-dot-circle-o"></i>Guardar cambios
             </Button>
@@ -139,6 +141,7 @@ class EditarCliente extends Component {
       </Col>
     );
   }
+ 
 }
 
 export default EditarCliente;

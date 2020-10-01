@@ -19,6 +19,24 @@ export default [
           text: 'lista',
         }
       },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'listado',
+        to: '/ventas/lista',
+        badge: {
+          color: 'info',
+          text: 'listaTodo',
+        }
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'ventaFecha',
+        to: '/ventas/fecha',
+        badge: {
+          color: 'green',
+          text: 'lista',
+        }
+      },
 
       
     ],
@@ -41,6 +59,7 @@ export default [
           text: 'lista',
         }
       },
+
       
     ],
   },

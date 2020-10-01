@@ -6,6 +6,7 @@ module.exports = {
       username:'b_adam@gmail.com',
       password:'badam123',
       dni:'38111324',
+      esAdministrador:true,
       createdAt: new Date(),
       updatedAt: new Date(),
 

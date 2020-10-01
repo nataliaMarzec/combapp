@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+import Home from './componentes/Home/Home'
 import FacturasLista from './componentes/Facturas/FacturasLista.js'
 import Factura from './componentes/Facturas/Factura.js'
 import CargarFactura from './componentes/Facturas/CargarFactura.js'
@@ -14,17 +14,19 @@ import EditarArticulo from './componentes/Articulos/EditarArticulo'
 import VentasLista from './componentes/Ventas/VentasLista.js'
 import EditarVenta from './componentes/Ventas/EditarVenta.js';
 import Venta from './componentes/Ventas/Venta'
-
-
-
+import VentaFecha from './componentes/Ventas/VentaFecha'
+import RowVentaFecha from './componentes/Ventas/RowVentaFecha'
+import VentaLista from './componentes/Ventas/VentaLista'
 const routes = [
   { path: '/', exact: true, name: 'Home' },
 
   { path: '/ventas', exact: true,  name: 'ventas', component: VentasLista },
-  {path:'/ventas/venta', exact: true,  name: 'venta', component: Venta },
-  {path: '/ventas/editarVenta',exact:false,name:'editarVenta',component:EditarVenta},
-  
+  { path:'/ventas/venta', exact: true,  name: 'venta', component: Venta },
+  { path: '/ventas/editarVenta',exact:false,name:'editarVenta',component:EditarVenta},
 
+  { path:'/ventas/fecha', exact: true,  name: 'ventaFecha', component: VentaFecha },
+  { path: '/ventas/venta',exact:false,name:'rowventaFecha',component:RowVentaFecha},
+  { path: '/ventas/lista',exact:false,name:'VentaLista',component:VentaLista},
 
 
   { path: '/facturas', exact: true,  name: 'Facturas', component: FacturasLista },

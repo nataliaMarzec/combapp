@@ -10,7 +10,7 @@ module.exports = {
       saldoCobrado:'100',
       montoSinCobrar:'100',
       tipoDePago:'efectivo',
-
+      fechas:new Date(),
 
       
       createdAt: new Date(),

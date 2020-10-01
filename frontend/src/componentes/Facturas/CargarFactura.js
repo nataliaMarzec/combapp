@@ -27,6 +27,7 @@ class CargarFactura extends React.Component {
   estadoInicial() {
     this.setState({factura: {fechaEmision: "",tipoComprobante: "",nroComprobante: "",ptoVenta:"" } });
   }
+  
   componentWillReceiveProps(props) {
     this.setState({ factura: props.factura });
     this.setState({ facturas: props.facturas});

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import Factura from "./Factura";
 import CargarFactura from "./CargarFactura";
 import EditarFactura from "./EditarFactura";
@@ -13,8 +13,11 @@ import {
   Card,
   CardHeader,
   CardBody,
+  Input
 } from "reactstrap";
 
+import DataListInput from "react-datalist-input";
+import ArticulosLista from "../Articulos/ArticulosLista"
 class FacturasLista extends React.Component {
   constructor(props) {
     super(props);
@@ -26,6 +29,8 @@ class FacturasLista extends React.Component {
       nroComprobante: "",
       tipoComprobante: "",
       ptoVenta: "",
+      articulos:[],
+      articulo:{}
     };
     this.selectFactura = this.selectFactura.bind(this);
     this.facturaChangeHandler = this.facturaChangeHandler.bind(this);
@@ -46,7 +51,9 @@ class FacturasLista extends React.Component {
       .then((facturas) => this.setState({ facturas: facturas }));
   }
 
+
   render() {
+ 
     return (
       <div className="container">
         <Row>&nbsp;</Row>
@@ -60,6 +67,14 @@ class FacturasLista extends React.Component {
           <Button color="success" onClick={this.toggle}>
             Nueva Factura
           </Button>
+          {/* <this.Articulos></this.Articulos> */}
+          <DataListInput list="articulos" type="text" name="articulo" className="input-icon"
+           value={this.state.articulo.nombre}
+          onChange={this.handleChange}/>
+          <datalist id="articulos">
+           {this.mostrarArticulosLista}
+          </datalist>
+          
 
           <Modal
             isOpen={this.state.modal}
@@ -148,6 +163,7 @@ class FacturasLista extends React.Component {
   deleteFactura(id) {
     this.props.onDelete(id);
   }
+    
 
   renderRows() {
     return this.state.facturas.map((unaFactura, index) => {

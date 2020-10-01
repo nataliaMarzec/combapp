@@ -1,6 +1,6 @@
 "use strict";
 const { Sequelize, Op, Model } = require("sequelize");
-const {Venta,Cliente}    = require("./sequelizeConnection")
+const {Venta,Cliente,Articulo}    = require("./sequelizeConnection")
 
 module.exports = function (sequelize, DataTypes) {
   const Factura = sequelize.define(
@@ -15,7 +15,17 @@ module.exports = function (sequelize, DataTypes) {
     fechaEmision: DataTypes.DATE,
     tipoComprobante: DataTypes.STRING,
     nroComprobante: DataTypes.STRING,
-    ptoVenta: DataTypes.STRING
+    ptoVenta: DataTypes.STRING,
+    articulo_id: {
+      type:DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Articulo,
+        key: 'id'
+      },
+      comment: 'articulo vendido'
+    }
+  
     },
 
     {

@@ -11,16 +11,17 @@ import {
   CardBody,
 } from "reactstrap";
 
+
 class VentasLista extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { ventas: [], seleccionado: {},fechas:[],pagos:[] };
+    this.state = { ventas: [], seleccionado: {}, fechas: [], pagos: [] };
     this.selectVenta = this.selectVenta.bind(this);
     this.ventaChangeHandler = this.ventaChangeHandler.bind(this);
     this.listadoVentas = this.listadoVentas.bind(this);
     this.updateLista = this.updateLista.bind(this);
     this.toggle = this.toggle.bind(this);
-
+    this.editarVenta=this.editarVenta.bind(this)
   }
 
   toggle() {
@@ -28,6 +29,8 @@ class VentasLista extends React.Component {
       modal: !this.state.modal,
     });
   }
+
+  
 
   componentWillMount() {
     fetch(`http://localhost:8888/ventas`)
@@ -40,8 +43,7 @@ class VentasLista extends React.Component {
       <div className="container">
         <Row>&nbsp;</Row>
         <Container fluid>
-       
-         <Row>&nbsp;</Row>
+          <Row>&nbsp;</Row>
         </Container>
 
         <div className="animated fadeIn">
@@ -49,7 +51,7 @@ class VentasLista extends React.Component {
             <Col xs="12" lg="12">
               <Card>
                 <CardHeader>
-                  <i className="fa fa-align-justify"></i>Ventas Lista
+                  <i className="fa fa-align-justify"></i>Ventas
                 </CardHeader>
                 <CardBody>
                   <EditarVenta
@@ -58,9 +60,12 @@ class VentasLista extends React.Component {
                     listadoVentas={this.listadoVentas}
                     updateLista={this.updateLista}
                   />
-                
+
                   <Table responsive bordered size="sm">
                     <thead>
+                      <CardHeader>
+                        <i className="fa fa-align-justify"></i><strong>Todas las ventas</strong>Lista
+                      </CardHeader>
                       <tr>
                         <th>id</th>
                         <th>nroVenta</th>
@@ -84,14 +89,17 @@ class VentasLista extends React.Component {
   }
   renderHeaders(columns) {
     return columns.map((col, index) => {
-      return (
-          <th>{col}</th>
-      );
-    })
+      return <th>{col}</th>;
+    });
   }
   selectVenta(unaVenta) {
     this.setState({ seleccionado: unaVenta });
   }
+
+  editarVenta (unaVenta) {
+    this.setState({venta:unaVenta});
+  };
+
 
   ventaChangeHandler(unaVenta) {
     var nuevaLista = this.state.ventas.map((item) =>
@@ -123,12 +131,16 @@ class VentasLista extends React.Component {
           updateLista={this.updateLista}
           ventaChangedHandler={this.ventaChangeHandler}
           onDelete={this.deleteVenta.bind(this)}
+          editarVenta={this.editarVenta}
+          estaActivado={false}
+          editarActivado={true}
+          borrarActivado={true}
+
+
         />
       );
     });
   }
-
 }
-
 
 export default VentasLista;

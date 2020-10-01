@@ -19,14 +19,15 @@ class EditarVenta extends Component {
     super(props);
     this.state = {
       ventas: props.ventas,
-      venta: props.venta != null ? this.props.venta : {},
-      fechas: props.fechas,
-      pagos: props.pagos,
-      selectedOption: "",
-      options: null,
-      todos: [],
-      fecha: "",
-      listaFecha: [],
+      venta:props.venta,
+      // ver:false,
+      // venta: props.venta != null ? this.props.venta : {},
+      // fechas: props.fechas,
+      // pagos: props.pagos,
+      // selectedOption: "",
+      // options: null,
+      // todos: [],
+      // listaFecha: [],
     };
     this.changeHandler = this.changeHandler.bind(this);
     this.estadoInicial=this.estadoInicial.bind(this);
@@ -39,23 +40,37 @@ class EditarVenta extends Component {
     this.setState({ ventas: props.ventas }, console.log("state", this.state));
   }
 
-  estadoInicial() {
+  // estadoInicial() {
+  //   this.setState({
+  //     venta: {
+  //       nroVenta: "",
+  //       fecha: "",
+  //       facturado:"no",
+  //       saldoCobrado: "",
+  //       montoSinCobrar: "",
+  //       tipoDePago: "",
+  //       fechas: [],
+  //       selectedOption: "",
+  //       options: null,
+  //       todos: [],
+  //       listaFecha: [],
+  //     },
+  //   });
+  // // }
+  estadoInicial(){
     this.setState({
-      venta: {
-        nroVenta: "",
-        fecha: "",
-        facturado: false,
+      venta:{
+        nroVenta:"",
+        fecha:"",
+        facturado:false,
         saldoCobrado: "",
         montoSinCobrar: "",
         tipoDePago: "",
-        fechas: [],
-        selectedOption: "",
-        options: null,
-        todos: [],
-        listaFecha: [],
-      },
-    });
+        ver:false
+      }
+    })
   }
+
 
   handleSubmit = (event) => {
     if (this.state.venta.id!==null) {
@@ -66,19 +81,21 @@ class EditarVenta extends Component {
     event.preventDefault();
   };
 
-  agregarVenta() {
-    console.log("venta", this.state);
-    fetch(`http://localhost:8888/ventas`, {
-      method: "POST",
-      body: JSON.stringify(this.state.venta),
+  
+  agregarVenta=ventas =>{
+    fetch("http://localhost:8888/ventas", {
+      method: "post",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      body: JSON.stringify(this.state.venta),
     })
       .then((res) => this.props.listadoVentas())
-      .then(this.estadoInicial);
+      .then((res) => this.estadoInicial());
+    // event.preventDefault();
   }
+
 
   editarVenta = () => {
     fetch("http://localhost:8888/ventas", {
@@ -89,8 +106,9 @@ class EditarVenta extends Component {
       },
       body: JSON.stringify(this.state.venta),
     })
+    // .then((res)=>this.props.listadoVentas())
       .then((res) => this.props.ventaChange(this.state.venta))
-      .then(this.estadoInicial);
+      .then(this.estadoInicial());
   };
 
   
@@ -102,13 +120,14 @@ class EditarVenta extends Component {
     this.setState({ venta: nuevaVenta }, this.editarVenta);
   }
 
+
   changeHandler(event) {
-    // console.log(event.target.value);
-    var nuevaVenta = Object.assign({}, this.state.venta);
-    nuevaVenta[event.target.name] = event.target.value;
-    this.setState({ venta: nuevaVenta });
-  
-  }
+    console.log(event.target.value)
+    var nuevaVenta = Object.assign({}, this.state.venta)
+    nuevaVenta[event.target.name] = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+    this.setState({venta: nuevaVenta})
+}
+
 
   render() {
     const { selectedOption } = this.state;
@@ -160,7 +179,7 @@ class EditarVenta extends Component {
               </div>
             ) : (
               true
-            )}
+            )} 
           </div>
           </FormGroup>
               <FormGroup row>
@@ -169,10 +188,9 @@ class EditarVenta extends Component {
                 </Col>
                 <Col xs="12" md="9">
                   <Input
-                    type="text"
+                    type="checkbox"
                     id="facturado"
                     name="facturado"
-                    placeholder="Completa fecha..."
                     required={false}
                     value={this.state.venta.facturado }
                     onChange={this.changeHandler}
@@ -232,11 +250,11 @@ class EditarVenta extends Component {
           </CardBody>
           <CardFooter>
 
-            <Button style={{ margin: "5px" }} onClick={this.handleSubmit}>
+            <Button style={{ margin: "5px" }} onClick={(e)=>this.agregarVenta(e)}>
               Guardar
             </Button>
-            <Button style={{ margin: "5px" }} onClick={this.modificarFecha}>
-              EditarFecha
+            <Button style={{ margin: "5px" }} onClick={this.editarVenta}>
+              Editar
             </Button>
           </CardFooter>
         </Card>
