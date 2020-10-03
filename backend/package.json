@@ -9,7 +9,6 @@
     "local:migrate": "node_modules/.bin/sequelize db:migrate",
     "local:migrate:undo": "node_modules/sequelize-cli/lib/sequelize db:migrate:undo",
     "local:seeds": "node_modules/.bin/sequelize db:seed:all"
-
   },
   "repository": {
     "type": "git",
@@ -28,14 +27,56 @@
   },
   "homepage": "https://github.com/nataliaMarzec/combapp#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "cache": "^2.3.1",
+    "connect-session-sequelize": "^6.0.0",
     "cors": "^2.8.5",
+    "date-fns": "^2.16.1",
     "express": "^4.17.1",
+    "express-handlebars": "^3.0.2",
+    "express-session": "^1.15.6",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "mysql2": "^2.1.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "sequelize": "^6.3.4"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "context",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "it",
+      "expect"
+    ]
   },
   "devDependencies": {
     "sequelize-cli": "^6.2.0"
+  },
+  "development": {
+    "username": "nat",
+    "password": "Combapp_20",
+    "database": "combapp",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
   }
 }

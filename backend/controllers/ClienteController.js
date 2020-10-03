@@ -1,6 +1,6 @@
 var { Op } = require("sequelize");
 const { Cliente } = require("../models/sequelizeConnection.js");
-const cliente = require("../models/cliente.js");
+// const cliente = require("../models/cliente.js");
 
 module.exports = {
   create:async(req, res) =>{
@@ -24,7 +24,9 @@ module.exports = {
       razonSocial,
       telefono,
       email,
-    })).res.status(200).json({cliente:"cliente creado"})
+    }))
+    
+       .then(res.json({cliente:"cliente creado"}))
   },
 
   
@@ -75,4 +77,24 @@ module.exports = {
       email,
     });
   },
+
+
+async encontrarCliente(req,res){
+const cliente = await Cliente.findOne({ where: {id:req.params.id} });
+if (cliente === null) {
+  console.log('Cliente no encontrado!');
+} else {
+  console.log(cliente instanceof Cliente); // true
+  console.log(cliente.id); 
+}
+}
+
+
+
+
+
+
+
+
+
 };

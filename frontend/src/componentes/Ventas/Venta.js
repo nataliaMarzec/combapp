@@ -1,19 +1,24 @@
 import React from "react";
 import { Button } from "reactstrap";
-
+import { CButton } from '@coreui/react'
 class Venta extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { venta: props.venta };
+    this.state = { venta: props.venta,activado:false };
     this.seleccionarVenta = this.seleccionarVenta.bind(this);
     this.deleteHandler = this.deleteHandler.bind(this);
     this.onDelete = this.onDelete.bind(this);
     this.deleteVenta = this.deleteVenta.bind(this);
-
+    this.toggleEditar=this.toggleEditar.bind(this);
   }
 
   seleccionarVenta() {
     this.props.selector(this.props.venta);
+  }
+  toggleEditar() {
+    this.setState({
+      activado: !this.state.activado,
+    });
   }
 
   deleteVenta(id) {
@@ -39,6 +44,10 @@ class Venta extends React.Component {
     }).then(this.onDelete);
   }
 
+  editarVenta() {
+    this.props.editarVenta(this.props.venta);
+  }
+
   estadoInicial() {
     this.setState({
       venta: {
@@ -53,6 +62,9 @@ class Venta extends React.Component {
         options: null,
         todos: [],
         listaFecha: [],
+        estaActivado: this.props.estaActivado,
+        editarActivado: this.props.editarActivado,
+        borrarActivado: this.props.borrarActivado,
       },
     });
   }
@@ -61,46 +73,34 @@ class Venta extends React.Component {
     this.setState({ venta: props.venta });
   }
 
-  
-  sendHandler(event) {
-    fetch("http://localhost:8888/ventas", {
-      method: "put",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(this.state.venta),
-    })
-      .then((res) => this.props.ventaChanged(this.state.venta))
-      .then((res) => this.estadoInicial)
-      .then((res)=> this.setState(this.state.venta));
-    event.preventDefault();
-  }
-
   render() {
     return (
       <tr>
         <td>{this.props.venta.id}</td>
         <td>{this.props.venta.nroVenta}</td>
-        <td>{this.props.venta.facturado}</td>
+        <td>{this.props.venta.fecha}</td>
+        <td>{this.props.venta.facturado ? true : false}</td>
         <td>{this.props.venta.saldoCobrado}</td>
         <td>{this.props.venta.montoSinCobrar}</td>
         <td>{this.props.venta.tipoDePago}</td>
         &nbsp;&nbsp;
-        <Button onClick={this.seleccionarVenta} outline color="primary">
+            <CButton onClick={this.seleccionarVenta} outline color="primary">
           {" "}
           seleccionar
-        </Button>
+        </CButton>
         &nbsp;&nbsp;
-        <Button
+        <CButton
           color="danger"
           size="sm"
           onClick={() => this.deleteVenta(this.props.venta.id)}
         >
           <i className="fa fa-ban"></i>Borrar
-        </Button>{" "}
+        </CButton>{" "}
+        <CButton onClick={this.editarVenta} toogle={this.toggleEditar} isOpen={this.state.activado}
+            className={this.props.className} outline color="info">Editar</CButton>
       </tr>
     );
+
   }
 }
 

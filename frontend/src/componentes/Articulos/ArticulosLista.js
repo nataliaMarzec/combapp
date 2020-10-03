@@ -1,19 +1,38 @@
-import React from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import Articulo from "./Articulo";
 import CargarArticulo from "./CargarArticulo";
-import EditarArticulo from "./EditarArticulo"
-import {Table,Container,Row,Button,Modal,ModalHeader,Col,Card,CardHeader,CardBody
+import EditarArticulo from "./EditarArticulo";
+import {
+  Table,
+  Container,
+  Row,
+  Button,
+  Modal,
+  ModalHeader,
+  Col,
+  Card,
+  CardHeader,
+  CardBody,
 } from "reactstrap";
+import DataListInput from "react-datalist-input";
 
 class ArticulosLista extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { articulos: [], seleccionado: {} ,articulo:{}};
+    this.state = {
+      articulos: [],
+      seleccionado: {},
+      articulo: {},
+      articuloSeleccionado: {},
+      onSelectDataList: false,
+      modalDataList: false,
+    };
     this.selectArticulo = this.selectArticulo.bind(this);
     this.articuloChangeHandler = this.articuloChangeHandler.bind(this);
     this.listadoArticulos = this.listadoArticulos.bind(this);
     this.updateLista = this.updateLista.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.toggleDataList = this.toggleDataList.bind(this);
   }
 
   toggle() {
@@ -22,11 +41,78 @@ class ArticulosLista extends React.Component {
     });
   }
 
+  toggleDataList() {
+    this.onSelect();
+    this.setState({
+      modalDataList: !this.state.modalDataList,
+    });
+  }
+
   componentWillMount() {
     fetch(`http://localhost:8888/articulos`)
       .then((res) => res.json())
       .then((articulos) => this.setState({ articulos: articulos }));
   }
+
+  onSubmitDataList(unArticulo) {
+    this.onSelect(unArticulo);
+    if (this.state.onSelectDataList == true) {
+      console.log("articuloSeleccionado__");
+      return (
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggleDataList}
+          className={this.props.className}
+        >
+          <ModalHeader toggle={this.toggleDataList}>
+            <strong>Nuevo</strong>Articulo
+          </ModalHeader>
+
+          <CargarArticulo
+            articulo={this.state.articuloSeleccionado}
+            articuloChanged={this.articulosDataListInputChangeHandler}
+            updateLista={this.updateLista}
+          />
+        </Modal>
+      );
+    } else {
+      console.log("sin articulo seleccionado__");
+    }
+  }
+
+  onSelect = (articulo) => {
+    this.setState({ articuloSeleccionado: articulo, onSelectDataList: true });
+  };
+
+  ArticulosDataListInput = () => {
+    const [articulo, setItem] = useState();
+    const onSelect = useCallback((articulo) => {
+      console.log("articuloSeleccionado___", this.onSelect(articulo));
+    }, []);
+
+    const items = useMemo(
+      () =>
+        this.state.articulos.map((articulo) => ({
+          label: articulo.nombre,
+          key: articulo.id,
+          someAdditionalValue: articulo.precio,
+          ...articulo,
+        })),
+      console.log("articulos", [items])
+    );
+
+    return (
+      <div className="container">
+        <DataListInput
+          placeholder="Seleciona un articulo..."
+          item={articulo}
+          items={items}
+          onSelect={onSelect}
+          articuloChange={this.articulosDataListInputChangeHandler.bind(this)}
+        />
+      </div>
+    );
+  };
 
   render() {
     return (
@@ -38,8 +124,16 @@ class ArticulosLista extends React.Component {
             articuloChange={this.articuloChangeHandler}
             listadoArticulos={this.listadoArticulos}
             updateLista={this.updateLista}
-        
           />
+
+          <this.ArticulosDataListInput
+            color="info"
+            onClick={this.toggleDataList}
+          ></this.ArticulosDataListInput>
+
+          <br></br>
+          <br></br>
+
           <Button color="success" onClick={this.toggle}>
             Nuevo Articulo
           </Button>
@@ -100,7 +194,7 @@ class ArticulosLista extends React.Component {
     var updateArticulo = this.state.articulos.filter(
       (item) => unArticulo.id !== item.id
     );
-    this.setState({ articulos: updateArticulo});
+    this.setState({ articulos: updateArticulo });
   }
 
   selectArticulo(unArticulo) {
@@ -111,7 +205,13 @@ class ArticulosLista extends React.Component {
     var nuevaLista = this.state.articulos.map((item) =>
       item.id !== unArticulo.id ? item : unArticulo
     );
-    this.setState({ articulos: nuevaLista, seleccionado:unArticulo });
+    this.setState({ articulos: nuevaLista, seleccionado: unArticulo });
+  }
+  articulosDataListInputChangeHandler(unArticulo) {
+    var nuevaLista = this.state.articulos.map((item) =>
+      item.id !== unArticulo.id ? item : unArticulo
+    );
+    this.setState({ articuloSeleccionado: unArticulo });
   }
 
   deleteArticulo(id) {
@@ -127,7 +227,6 @@ class ArticulosLista extends React.Component {
           updateLista={this.updateLista}
           articuloChangedHandler={this.articuloChangeHandler}
           onDelete={this.deleteArticulo.bind(this)}
-          
         />
       );
     });

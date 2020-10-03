@@ -4,7 +4,7 @@ import EditarFactura from "./EditarFactura"
 class Factura extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {factura: props.factura,seleccionado:{} };
+    this.state = {factura: props.factura,seleccionado:{} ,articulos:[]};
     this.seleccionarFactura = this.seleccionarFactura.bind(this);
     this.deleteHandler = this.deleteHandler.bind(this);
     this.onDelete = this.onDelete.bind(this);
@@ -48,11 +48,23 @@ class Factura extends React.Component {
   }
 
  estadoInicial() {
-    this.setState({factura: {nroComprobante: "",fechaEmision: "",tipoComprobante: "",ptoVenta:"" } });
+    this.setState({factura: {nroComprobante: "",fechaEmision: "",tipoComprobante: "",ptoVenta:"",articulos:[] } });
   }
   componentWillReceiveProps(props) {
     this.setState({factura: props.factura });
+    this.setState({facturas:props.facturas});
+    // this.setState({articulo_id:props.articulo_id})
   }
+  agregarArticulo(articulo_id){
+      fetch("http://localhost:8888/facturas/" +articulo_id, {
+        method: "Put",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+    }
+  
 
 
   render() {
@@ -67,6 +79,10 @@ class Factura extends React.Component {
         <Button color="success" onClick={this.toggle}>
           {" "}
           seleccionar/Editar
+        </Button>
+        <Button color="info" onClick={this.agregarArticulo}>
+          {" "}
+          Agregar articulo
         </Button>
      
           {/* <Modal

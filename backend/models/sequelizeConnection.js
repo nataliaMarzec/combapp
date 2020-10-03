@@ -1,16 +1,11 @@
 'use strict'
-
+// const {DBURL} = require('../env/config');
 const Sequelize = require('sequelize');
 const ClienteModel=require('./cliente');
 const VentaModel=require('./venta');
 const FacturaModel = require('./factura');
 const ArticuloModel=require('./articulo');
-
-
-
-
-
-
+const UsuarioModel=require('./usuario');
 
 
 
@@ -29,15 +24,11 @@ var models={}
 models=sequelize
 models=Sequelize
 
-const Cliente= ClienteModel(sequelize,Sequelize);
-const Venta= VentaModel(sequelize,Sequelize);
-const Factura= FacturaModel(sequelize,Sequelize);
+const Cliente= ClienteModel(sequelize,Sequelize)
+const Venta= VentaModel(sequelize,Sequelize)
+const Factura= FacturaModel(sequelize,Sequelize)
 const Articulo= ArticuloModel(sequelize,Sequelize)
-
-
-
-
-
+const Usuario=UsuarioModel(sequelize,Sequelize)
 
 
 
@@ -51,20 +42,11 @@ sequelize.authenticate()
    console.error('ERROR,_BD_NO_CONECTADA:', err);
  });
 
-
-
 // sequelize.sync({force:true})
 sequelize.sync()
   .then(() => {
     console.log(`Base de datos y tablas creadas, modelos sincronizados!`)
-    
-
-
-  
   })
-
-
-
 
 
 module.exports = {
@@ -72,8 +54,8 @@ module.exports = {
   Cliente,
   Venta,
   Factura,
-  Articulo
-
+  Articulo,
+  Usuario
 
   
 };

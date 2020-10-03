@@ -4,11 +4,11 @@ import CargarCliente from "./CargarCliente";
 import EditarCliente from "./EditarCliente"
 import {Table,Container,Row,Button,Modal,ModalHeader,Col,Card,CardHeader,CardBody
 } from "reactstrap";
-
+import {Route}from 'react-router-dom';
 class ClientesLista extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { clientes: [], seleccionado: {} ,cliente:{}};
+    this.state = { clientes:[], seleccionado:{} ,cliente:{}};
     this.selectCliente = this.selectCliente.bind(this);
     this.clienteChangeHandler = this.clienteChangeHandler.bind(this);
     this.listadoClientes = this.listadoClientes.bind(this);
@@ -33,13 +33,13 @@ class ClientesLista extends React.Component {
       <div className="container">
         <Row>&nbsp;</Row>
         <Container fluid>
-          <EditarCliente
+          <Route render={props => <EditarCliente {...props}
             cliente={this.state.seleccionado}
             clienteChange={this.clienteChangeHandler}
             listadoClientes={this.listadoClientes}
             updateLista={this.updateLista}
-            // onSubmit={this.props.handleSubmit}
-          />
+            clientes={this.state.clientes}
+          />} />
           <Button color="success" onClick={this.toggle}>
             Nuevo Cliente
           </Button>
@@ -115,7 +115,7 @@ class ClientesLista extends React.Component {
       item.id !== unCliente.id ? item : unCliente
     );
     // this.setState({ clientes: nuevaLista, seleccionado: unCliente });
-    this.setState({ clientes: nuevaLista, seleccionado: {},cliente:unCliente });
+    this.setState({ clientes: nuevaLista, seleccionado:unCliente,cliente:{} });
   }
 
   deleteCliente(id) {

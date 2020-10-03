@@ -26,6 +26,10 @@ module.exports = {
       tipoDePago: {
         type: Sequelize.STRING
       },
+      importeTotal:DataTypes.BIGINT.UNSIGNED,
+      fechas:{
+        type:Sequelize.DataTypes.DATE
+      },
      
       createdAt: {
         allowNull: false,
