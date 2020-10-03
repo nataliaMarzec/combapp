@@ -25,18 +25,13 @@ export default [
         to: '/ventas/lista',
         badge: {
           color: 'info',
-          text: 'listaTodo',
+          text: 'fecha',
         }
       },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'ventaFecha',
-        to: '/ventas/fecha',
-        badge: {
-          color: 'green',
-          text: 'lista',
-        }
-      },
+      
+
+
+      
 
       
     ],
@@ -74,12 +69,13 @@ export default [
       {
         _tag: 'CSidebarNavItem',
         name: 'listado',
-        to: '/clientes',
+        to: '/clientesLista',
         badge: {
           color: 'info',
           text: 'lista',
         }
       },
+      
 
       
     ],

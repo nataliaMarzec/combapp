@@ -27,18 +27,33 @@
   },
   "homepage": "https://github.com/nataliaMarzec/combapp#readme",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "bee-queue": "^1.2.3",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cache": "^2.3.1",
+    "connect-session-sequelize": "^6.0.0",
     "cors": "^2.8.5",
     "date-fns": "^2.16.1",
     "express": "^4.17.1",
+    "express-handlebars": "^3.0.2",
+    "express-session": "^1.15.6",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "mysql2": "^2.1.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "sequelize": "^6.3.4"
-  
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "context",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "it",
+      "expect"
+    ]
   },
   "devDependencies": {
     "sequelize-cli": "^6.2.0"

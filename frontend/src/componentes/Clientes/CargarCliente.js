@@ -1,15 +1,27 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input,Col,ModalBody,ModalFooter,
- } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Col,
+  ModalBody,
+  ModalFooter,
+} from "reactstrap";
 
 class CargarCliente extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = {clientes:props.clientes,cliente: props.cliente, modal: false };
+    this.state = {
+      clientes: this.props.clientes,
+      cliente: props.cliente,
+      clienteVentas: props.clienteVentas,
+      unCliente: {},
+      modal: false,
+    };
     this.changeHandler = this.changeHandler.bind(this);
     this.estadoInicial = this.estadoInicial.bind(this);
-  
   }
 
   toggle() {
@@ -19,12 +31,29 @@ class CargarCliente extends React.Component {
   }
 
   estadoInicial() {
-    this.setState({ cliente: { nombre: "",apellido:"",cuit: "", razonSocial:"",telefono:"",email: "" } });
+    this.setState({
+      cliente: {
+        nombre: "",
+        apellido: "",
+        cuit: "",
+        razonSocial: "",
+        telefono: "",
+        email: "",
+      },
+    });
   }
-  
+
+  componentWillMount() {
+    this.props.listadoClientes();
+  }
+
+
   componentWillReceiveProps(props) {
-    this.setState({ cliente: props.cliente })
-    this.setState({clientes:props.clientes})
+    this.setState({ cliente: props.cliente });
+    this.setState({ clientes: props.clientes });
+    this.setState({ clienteVentas: props.clienteVentas});
+    this.setState({ eliminarCliente: props.eliminarCliente });
+
   }
 
   changeHandler(event) {
@@ -36,21 +65,47 @@ class CargarCliente extends React.Component {
     this.setState({ cliente: nuevoCliente });
   }
 
-
   addHandler(event) {
-    console.log("agregar p/cliente/clientesLista",this.state.cliente,this.state.clientes)
+    console.log(
+      "agregar p/cliente/clientesLista",
+      this.state.cliente,
+      this.state.clientes
+    );
     fetch("http://localhost:8888/clientes", {
       method: "post",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-        body: JSON.stringify(this.state.cliente),
-    }).then((res)=>console.log(this.state.clientes,this.state.cliente))
-      .then((res) => console.log("listado clientes__",this.props.listadoClientes()))
+      body: JSON.stringify(this.state.cliente),
+    })
+      .then((res) => console.log(this.state.clientes, this.state.cliente))
+      .then((res) =>
+        console.log("listado clientes__", this.props.listadoClientes())
+      )
       .then((res) => this.estadoInicial());
     event.preventDefault();
   }
+
+  handleSubmit = event => {
+    if (this.state.cliente.id) {
+      this.editarcliente();
+    } else {
+      this.buscarElCliente(this.state.cliente.nroCliente);
+    }
+    event.preventDefault(event);
+  };
+
+  buscarElCliente = elCliente => {
+    fetch(`http://localhost:8888/clientes/buscar/` + elCliente)
+      .then(res => res.json())
+      .then(clts =>
+        this.setState({ elCliente: clts }, this.agregarCliente(clts))
+      );
+  };
+
+
+
 
   render() {
     return (
@@ -121,7 +176,7 @@ class CargarCliente extends React.Component {
                 />
               </Col>
             </FormGroup>
-           
+
             <FormGroup row>
               <Col md="3">
                 <Label htmlFor="hf-mobile-number">Nro&nbsp;telefono</Label>
@@ -154,7 +209,6 @@ class CargarCliente extends React.Component {
                 />
               </Col>
             </FormGroup>
-
           </Form>
         </ModalBody>
 
@@ -172,5 +226,4 @@ class CargarCliente extends React.Component {
   }
 }
 
-
-  export default CargarCliente;
+export default CargarCliente;

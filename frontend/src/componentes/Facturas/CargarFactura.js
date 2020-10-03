@@ -13,7 +13,12 @@ import {
 class CargarFactura extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { factura: props.factura, modal: false };
+    this.state = {
+      factura: props.factura,
+      facturas: props.facturas,
+      articulo: [],
+      modal: false,
+    };
     this.changeHandler = this.changeHandler.bind(this);
     this.estadoInicial = this.estadoInicial.bind(this);
   }
@@ -25,12 +30,21 @@ class CargarFactura extends React.Component {
   }
 
   estadoInicial() {
-    this.setState({factura: {fechaEmision: "",tipoComprobante: "",nroComprobante: "",ptoVenta:"" } });
+    this.setState({
+      factura: {
+        fechaEmision: "",
+        tipoComprobante: "",
+        nroComprobante: "",
+        ptoVenta: "",
+        articulo_id: [],
+      },
+    });
   }
-  
+
   componentWillReceiveProps(props) {
     this.setState({ factura: props.factura });
-    this.setState({ facturas: props.facturas});
+    this.setState({ facturas: props.facturas });
+    this.setState({ articulo_id: props.articulo });
   }
 
   changeHandler(event) {
@@ -55,13 +69,38 @@ class CargarFactura extends React.Component {
       .then((res) => this.estadoInicial());
     event.preventDefault();
   }
+  handlerTotalPrecioArticulos(event) {
+    this.setState(
+      { [event.target.name]: event.target.value },
+      this.calcularTotal,
+      this.handlerChange(event)
+    );
+  }
+  calcularTotal(){
+   var totalCalculado=0;
+   this.state.articulosFacturados.forEach(factura=>{
+     totalCalculado += parseFloat(factura.articulo_id.precio)
+   });
+   return totalCalculado;
+  }
+//   montoAdeudado = () => {
+//     var totalT = 0;
+//     var mCobrado = 0;
+//     this.state.clienteTransacciones.forEach(transaccion => {
+//       totalT += parseFloat(transaccion.importeTotal);
+//       mCobrado += parseFloat(transaccion.montoCobrado);
+//     });
+
+//     return totalT - mCobrado;
+//   };
+// }
 
   render() {
     return (
       <Col xs="12" md="12">
         <ModalBody>
           <Form className="form-horizontal">
-          <FormGroup row>
+            <FormGroup row>
               <Col md="3">
                 <Label for="nroComprobante">Nro de comprobante</Label>
               </Col>
@@ -109,7 +148,7 @@ class CargarFactura extends React.Component {
                 />
               </Col>
             </FormGroup>
-         
+
             <FormGroup row>
               <Col md="3">
                 <Label for="ptoVenta">Punto de venta</Label>
@@ -126,6 +165,7 @@ class CargarFactura extends React.Component {
                 />
               </Col>
             </FormGroup>
+
           </Form>
         </ModalBody>
 

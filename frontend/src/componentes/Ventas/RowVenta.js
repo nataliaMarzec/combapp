@@ -24,7 +24,7 @@ class RowFarmacia extends React.Component {
         this.props.actualizarList(this.props.venta)
     }
     estadoInicial(){
-      this.setState({ venta: { nroVenta: "",saldoCobrado:"",facturado:true,deTurno: true, fechas:[]} });
+      this.setState({ venta: { nroVenta: "",saldoCobrado:"",facturado:true, fechas:[]} });
     }
    
     handleSubmit(id) {
@@ -43,7 +43,8 @@ class RowFarmacia extends React.Component {
             <tr key={this.props.venta.id} onClick={this.selectVenta}>
               <td>{this.props.venta.nroVenta}</td>
               <td>{this.props.venta.saldoCobrado}</td>
-              <td>{this.props.venta.fechas}</td>
+              <td>{this.props.venta.fecha}</td>
+              {/* <td>{this.props.venta.fechas}</td> */}
               <td>
               <FormGroup check row>
               <Col sm={{ size: 1, offset: 2 }}>

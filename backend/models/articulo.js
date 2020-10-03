@@ -1,6 +1,6 @@
 "use strict";
 const { Sequelize, Op, Model } = require("sequelize");
-const { Venta } = require("./sequelizeConnection");
+const { Venta,Factura } = require("./sequelizeConnection");
 module.exports = function (sequelize, DataTypes) {
   const Articulo = sequelize.define(
     "Articulo",
@@ -23,9 +23,9 @@ module.exports = function (sequelize, DataTypes) {
     }
   );
 
-  (Articulo.associate = (models) => {
-    
-  });
+  // (Articulo.associate = (models) => {
+  //   models.Articulo.belongTo(models.Factura);
+  // });
   
 
   return Articulo;

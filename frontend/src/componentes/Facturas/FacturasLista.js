@@ -112,6 +112,7 @@ class FacturasLista extends React.Component {
                         <th>fechaEmision</th>
                         <th>tipoComprobante</th>
                         <th>puntoDeVenta</th>
+                        <th>totalVendido</th>
                       </tr>
                     </thead>
                     <tbody>{this.renderRows()}</tbody>

@@ -7,7 +7,8 @@
     "src/componentes/Ventas",
     "src/componentes/Facturas",
     "src/componentes/Clientes",
-    "src/componentes/Articulos"
+    "src/componentes/Articulos",
+    "src/componentes/Home",
     
   ]
   

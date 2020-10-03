@@ -25,7 +25,7 @@ class Login extends Component {
      password:this.state.password
     });
    
-   fetch('http://localhost:8888/usuarios/iniciarsesion', {
+   fetch('http://localhost:8888/usuarios/loggin', {
           headers: {
               'Content-Type': 'application/json',              
           },

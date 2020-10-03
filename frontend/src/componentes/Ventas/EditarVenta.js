@@ -122,7 +122,7 @@ class EditarVenta extends Component {
 
 
   changeHandler(event) {
-    console.log(event.target.value)
+    console.log("event value_______",event.target.value)
     var nuevaVenta = Object.assign({}, this.state.venta)
     nuevaVenta[event.target.name] = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
     this.setState({venta: nuevaVenta})

@@ -1,6 +1,6 @@
 "use strict";
 const { Sequelize, Op, Model } = require("sequelize");
-const {Venta}   = require("./sequelizeConnection")
+const { Venta } = require("./sequelizeConnection");
 module.exports = function (sequelize, DataTypes) {
   const Cliente = sequelize.define(
     "Cliente",
@@ -9,22 +9,30 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
       },
       nombre: {
-		    type:DataTypes.STRING,
-		    allowNull:false,
-	     validate: {
-		     notNull: {
-	     		msg: 'Por favor completa tu nombre'
-       }
-      }
-		},
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Por favor completa tu nombre",
+          },
+        },
+      },
       apellido: DataTypes.STRING,
       cuit: DataTypes.BIGINT.UNSIGNED,
       razonSocial: DataTypes.STRING,
       telefono: DataTypes.STRING,
       email: DataTypes.STRING,
+      // ventas: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: false,
+      //   references: {
+      //     model: Venta,
+      //     key: "id",
+      //   },
+      // },
     },
 
     {
@@ -33,13 +41,12 @@ module.exports = function (sequelize, DataTypes) {
     }
   );
 
-  Cliente.associate = (models) => {
-   
-
-  
-
-  };
-    
+  // Cliente.associate = (models) => {
+  //   Cliente.hasMany(Venta, {
+  //     foreignKey: "id",
+  //     as: "venta",
+  //   });
+  // };
 
   return Cliente;
 };

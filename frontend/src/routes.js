@@ -5,7 +5,7 @@ import FacturasLista from './componentes/Facturas/FacturasLista.js'
 import Factura from './componentes/Facturas/Factura.js'
 import CargarFactura from './componentes/Facturas/CargarFactura.js'
 import ClientesLista from './componentes/Clientes/ClientesLista.js'
-import Cliente from './componentes/Clientes/Cliente.js'
+import ClienteRow from './componentes/Clientes/Cliente.js'
 import CargarCliente from './componentes/Clientes/CargarCliente.js'
 import ArticulosLista from './componentes/Articulos/ArticulosLista'
 import Articulo from './componentes/Articulos/Articulo'
@@ -14,9 +14,11 @@ import EditarArticulo from './componentes/Articulos/EditarArticulo'
 import VentasLista from './componentes/Ventas/VentasLista.js'
 import EditarVenta from './componentes/Ventas/EditarVenta.js';
 import Venta from './componentes/Ventas/Venta'
-import VentaFecha from './componentes/Ventas/VentaFecha'
-import RowVentaFecha from './componentes/Ventas/RowVentaFecha'
 import VentaLista from './componentes/Ventas/VentaLista'
+import Cliente from './componentes/Clientes/Cliente'
+
+
+
 const routes = [
   { path: '/', exact: true, name: 'Home' },
 
@@ -24,8 +26,6 @@ const routes = [
   { path:'/ventas/venta', exact: true,  name: 'venta', component: Venta },
   { path: '/ventas/editarVenta',exact:false,name:'editarVenta',component:EditarVenta},
 
-  { path:'/ventas/fecha', exact: true,  name: 'ventaFecha', component: VentaFecha },
-  { path: '/ventas/venta',exact:false,name:'rowventaFecha',component:RowVentaFecha},
   { path: '/ventas/lista',exact:false,name:'VentaLista',component:VentaLista},
 
 
@@ -34,8 +34,8 @@ const routes = [
   { path: '/facturas/cargarFactura', exact: true, name: 'Cargar Factura', component:CargarFactura },
 
 
-  { path: '/clientes', exact: true,  name: 'Clientes', component: ClientesLista },
-  { path: '/clientes/:id', exact: true, name: 'Cliente Detalles', component: Cliente },
+  { path: '/clientesLista', exact: true,  name: 'Clientes', component: ClientesLista },
+  { path: '/clientes/:id', exact: true, name: 'Cliente Detalles', component: Cliente},
   { path: '/clientes/cargarCliente', exact: true, name: 'Cargar Cliente', component:CargarCliente },
 
 
@@ -43,6 +43,7 @@ const routes = [
   {path: '/articulos/editarArticulo',exact:true,name:'editarArticulo',component:EditarArticulo},
   {path: '/articulo/:id', exact:false, name: 'articulo', component: Articulo },
   {path: '/articulos/cargarArticulo', exact:true, name: 'Cargar Articulo', component:CargarArticulo },
+
 
 
 

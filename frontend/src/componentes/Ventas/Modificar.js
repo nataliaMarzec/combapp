@@ -17,6 +17,7 @@ class Modificar extends React.Component {
         this.addTodo=this.addTodo.bind(this);
         
         this.state = {
+          venta:props.venta,
           ver:true,
           selectedOption: "",
           options:null,
@@ -59,7 +60,7 @@ class Modificar extends React.Component {
 
       } 
       estadoInicial(){
-        this.setState({ venta: { nroVenta: "",  saldoCobrado: "", fechas:[]} });
+        this.setState({ venta: { nroVenta: "", saldoCobrado:"",fecha:"",fechas:[]} });
         this.setState(
           {
             selectedOption: "",
@@ -71,7 +72,7 @@ class Modificar extends React.Component {
 
       }
       listaDeFechaNueva=()=>{
-        let nuevaFecha = this.state.fecha;
+        let nuevaFecha = this.state.venta.fecha;
         console.log("nuevaFecha",nuevaFecha)
         console.log("listaNuevaState",this.state)
         
@@ -84,7 +85,7 @@ class Modificar extends React.Component {
 
       }
       listo = () => {
-        let text =  this.state.todos.map(function(p){return p.text});
+        let text =  this.state.todos.map(function(saldocob){return saldocob.text});
         console.log("listas",this.state.todos);
         console.log("text",text);
         var {venta} = this.state;
@@ -105,8 +106,6 @@ class Modificar extends React.Component {
         event.preventDefault();
       }
       editarVenta =()=> {
-        
-
         fetch('http://localhost:8888/ventas', {
             method: 'PUT',
             headers: {
@@ -130,6 +129,7 @@ class Modificar extends React.Component {
         }).then(res => this.props.listado())
           .then(this.estadoInicial);
       }
+
       removeItemFromArr ( arr, item ) {
         var i = arr.indexOf( item );
         arr.splice( i, 1 );
@@ -141,7 +141,7 @@ class Modificar extends React.Component {
       nuevaFecha= event =>{
         let value = event.target.value
         console.log("event",value)
-        this.setState({fecha:value},console.log("nuevaFecha",this.state.fecha))
+        this.setState({fecha:value},console.log("nuevaFecha",this.state.venta.fecha))
       }
       addTodo = todo => {
         this.setState({
@@ -199,8 +199,8 @@ class Modificar extends React.Component {
           ): true}
           </div>
           </div>
-            <button style={ {margin :"5px"}} onClick={this.modificarFecha}>Modificar</button>
-            <button style={ {margin :"5px"}} onClick={this.handleSubmit}>Listo</button>
+            
+            <button style={ {margin :"5px"}} onClick={this.handleSubmit}>Guardar</button>
           </form>
         );
       }

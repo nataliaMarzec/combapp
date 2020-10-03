@@ -15,60 +15,73 @@ import {
 class EditarCliente extends Component {
   constructor(props) {
     super(props);
-    this.state = { btn_status: true,clientes:[],cliente: props.cliente != null ? this.props.cliente:""};
+    this.state = {
+      btn_status: true,
+      clientes: [],
+      cliente: props.cliente != null ? this.props.cliente : "",
+    };
     this.changeHandler = this.changeHandler.bind(this);
     this.estadoInicial = this.estadoInicial.bind(this);
-    // this.sendHandler=this.sendHandler.bind(this);
-    
+    this.sendHandler=this.sendHandler.bind(this);
   }
 
   componentWillMount() {
     fetch(`http://localhost:8888/clientes`)
       .then((res) => res.json())
-      .then((cli)=>this.setState({cliente:cli}))
+      .then((cli) => this.setState({ cliente: cli }))
       .then((cliens) => this.setState({ clientes: cliens }));
   }
+  // componentWillMount() {
+  //   this.props.listadoClientes();
+  // }
 
   estadoInicial() {
-    this.setState({ cliente: { nombre: "", dni: "", email: "" } });
+    this.setState({
+      cliente: {
+        nombre: "",
+        apellido: "",
+        cuit: "",
+        razonSocial: "",
+        telefono: "",
+        email: "",
+      },
+    });
   }
 
   componentWillReceiveProps(props) {
     this.setState({ props });
     this.setState({ cliente: props.cliente });
-    this.setState({clientes:props.clientes})
+    this.setState({ clientes: props.clientes });
   }
- 
 
   changeHandler(event) {
-    console.log("change handler_______",event.target.value);
+    console.log("change handler_______", event.target.value);
     var nuevoCliente = Object.assign({}, this.state.cliente);
     nuevoCliente[event.target.name] = event.target.value;
-    this.setState({cliente: nuevoCliente,clientes:this.props.clientes });
-    console.log("change handler-clientes/cliente____",{clientes:this.props.clientes,cliente:nuevoCliente})
-}
-  
+    this.setState({ cliente: nuevoCliente, clientes: this.props.clientes });
+    console.log("change handler-clientes/cliente____", {
+      clientes: this.props.clientes,
+      cliente: nuevoCliente,
+    });
+  }
 
   sendHandler(event) {
-    // let{cliente,clientes}={...props}
-    // console.log("editar id",id)
-    console.log("cliente para editar/clientesLista"+this.state.id,this.state.cliente.id)
-    fetch("http://localhost:8888/clientes"+this.state.cliente.id, {
+    fetch("http://localhost:8888/clientes", {
       method: "put",
-      body: JSON.stringify(this.state.cliente.id),
+      body: JSON.stringify(this.state.cliente),
       headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },
     })
-      .then((res) => this.props.clienteChange(this.state.cliente.id))   
-      .then((res)=>this.estadoInicial())
+    .then((res) => this.props.clienteChange(this.state.cliente))
+      .then((res) => this.estadoInicial())
       .then(event.preventDefault());
-
   }
+  
 
   render() {
-    let {cliente}=this.state
+    let { cliente } = this.state;
     return (
       <Col xs="6" md="6">
         <Card>
@@ -132,7 +145,7 @@ class EditarCliente extends Component {
               type="submit"
               size="sm"
               color="primary"
-              onClick={(event)=>this.sendHandler(event)}
+              onClick={(event) => this.sendHandler(event)}
             >
               <i className="fa fa-dot-circle-o"></i>Guardar cambios
             </Button>
@@ -141,7 +154,6 @@ class EditarCliente extends Component {
       </Col>
     );
   }
- 
 }
 
 export default EditarCliente;

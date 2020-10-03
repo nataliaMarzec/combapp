@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "reactstrap";
 
-class Cliente extends React.Component {
+class ClienteRow extends React.Component {
   constructor(props) {
     super(props);
     this.state = { cliente: props.cliente };
@@ -62,7 +62,7 @@ class Cliente extends React.Component {
     })
       .then((res) => this.props.clienteChanged(this.state.cliente))
       .then((res) => this.estadoInicial)
-      .then((res)=> this.setState(this.state.cliente));
+      // .then((res)=> this.setState(this.state.cliente));
     event.preventDefault();
   }
 
@@ -95,4 +95,4 @@ class Cliente extends React.Component {
   }
 }
 
-export default Cliente;
+export default ClienteRow;

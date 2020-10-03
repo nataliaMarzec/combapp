@@ -26,7 +26,7 @@ class Header extends Component {
     });
   } 
   componentWillMount(){
-     fetch('http://localhost/gestiondeturnos/api/public/Usuarios/existeusuarioensesion',{
+     fetch('http://localhost/',{
       method: 'GET',  
     })
     .then((response) => response.json())
@@ -55,7 +55,7 @@ class Header extends Component {
         <header >           
         <Navbar color="dark" light expand="md">
         <img src={logo} className="App-logo" alt="logo" />
-          <NavbarBrand style={navItems} tag={Link} to="/Home">Gestion de Turnos "Pandas"</NavbarBrand>
+          <NavbarBrand style={navItems} tag={Link} to="/Home">Gestion combapp</NavbarBrand>
           {usuario != "" ? <h5>hola {usuario.nombre} {usuario.apellido} </h5> : ""}
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
